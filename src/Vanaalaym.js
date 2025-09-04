@@ -81,16 +81,25 @@ const Vanaalaym = () => {
         sx={{ boxShadow: "0 2px 8px rgba(0,0,0,0.07)" }}
       >
         <Toolbar sx={{ justifyContent: "space-between", minHeight: 80 }}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             {/* Header Logo */}
             <img
               src="/toplogo.png"
               alt="Vanaalayam Logo"
-              style={{ height: 60, marginRight: 12 }}
+              style={{ height: 108, marginLeft: "140%" }}
             />
           </Box>
           <Box
-            sx={{ display: "flex", alignItems: "center", padding: "24px 42px" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              padding: "40px 60px 40px 2px",
+            }}
           >
             {menuItems.map((item) => (
               <Typography
@@ -126,7 +135,13 @@ const Vanaalaym = () => {
       >
         <Container
           maxWidth="lg"
-          sx={{ display: "flex", alignItems: "center", height: "100%" }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            height: "100%",
+            justifyContent: "center", // Center content horizontally
+            px: 2, // Padding to match other sections
+          }}
         >
           <Box
             sx={{
@@ -138,12 +153,7 @@ const Vanaalaym = () => {
               minHeight: 300,
             }}
           >
-            {/* <img src={banner.logo} alt="Banner Logo" style={{ height: 110, marginBottom: 10 }} /> */}
-            {/* <Typography variant="h4" sx={{ fontWeight: 700, color: '#fff', mb: 2, textShadow: '2px 2px 10px #000', fontSize: 32 }}>
-              {banner.text.split('\n').map((line, i) => (
-                <span key={i}>{line}<br /></span>
-              ))}
-            </Typography> */}
+            {/* Banner content here */}
           </Box>
           <Box
             sx={{
@@ -153,7 +163,7 @@ const Vanaalaym = () => {
               alignItems: "center",
             }}
           >
-            {/* <img src={banner.rightImage} alt="Planting" style={{ maxWidth: "100%", maxHeight: 260, borderRadius: 16, boxShadow: "0 4px 24px rgba(0,0,0,0.12)" }} /> */}
+            {/* Banner right image here */}
           </Box>
         </Container>
         {/* Carousel Controls - Dots */}
@@ -190,343 +200,369 @@ const Vanaalaym = () => {
         </Box>
       </Box>
       {/* Offerings Section - Updated UI */}
-      <Box
-        sx={{
-          width: "100%",
-          py: 6,
-          px: 2,
-          background: "rgba(255,255,255,0.7)",
-          position: "relative",
-        }}
-      >
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: 700,
-            fontSize: "18px",
-            textAlign: "center",
-            mb: 4,
-            color: "#222",
-            letterSpacing: 1,
-          }}
-        >
-          OFFERINGS
-        </Typography>
+      <Container maxWidth={false} sx={{ px: 0 }}>
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: 6,
-            maxWidth: 1100,
-            margin: "0 auto",
+            width: "100%",
+            py: 10,
+            background: "rgba(255,255,255,0.7)",
+            position: "relative",
           }}
         >
-          {/* Left Column */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {/* Single Bed Room */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                background: "rgba(255,255,255,0.9)",
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              <img
-                src="/bed1.jpg"
-                alt="Single Bed Room"
-                style={{ width: 160, height: 100, objectFit: "cover" }}
-              />
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "'Roboto', Arial, sans-serif",
+              fontWeight: 300,
+              fontSize: "24px",
+              textAlign: "center",
+              mb: 4,
+              color: "#0e0000ff",
+              letterSpacing: 2,
+            }}
+          >
+            OFFERINGS
+          </Typography>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: 10, // Increased gap between cards
+              maxWidth: 1300, // Increased max width
+              margin: "0 auto",
+            }}
+          >
+            {/* Left Column */}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {/* Single Bed Room */}
               <Box
                 sx={{
-                  minWidth: 180,
                   display: "flex",
-                  flexDirection: "column",
+                  gap: 5, // Increased gap inside card
                   alignItems: "flex-start",
-                  position: "relative",
+                  justifyContent: "center",
+                  background: "rgba(255,255,255,0.9)",
+                  borderRadius: 3,
+                  p: 4, // Increased padding
                 }}
               >
-                <Typography
-                  variant="subtitle1"
-                  sx={{ fontWeight: 700, fontSize: "18px" }}
-                >
-                  SINGLE BED ROOMS
-                </Typography>
-                <Typography variant="body2" sx={{ my: 1, fontSize: "12px" }}>
-                  The 03 Single Bed Rooms
-                  <br />
-                  At Our Resort
-                </Typography>
+                <img
+                  src="/bed1.jpg"
+                  alt="Single Bed Room"
+                  style={{ width: 220, height: "100%", objectFit: "cover" }} // Increased image size
+                />
                 <Box
-                  sx={{ position: "absolute", top: 70, right: 10, bottom: 0 }}
+                  sx={{
+                    minWidth: 220,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    position: "relative",
+                  }}
                 >
-                  <Button
-                    variant="contained"
+                  <Typography
+                    variant="h6"
                     sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 600,
-                      boxShadow: "none",
-                      textTransform: "none",
-                      fontSize: 14,
-                      borderRadius: 0,
+                      fontFamily: "'Roboto', Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#000000ff",
                     }}
                   >
-                    Book Now
-                  </Button>
+                    SINGLE BED ROOMS
+                  </Typography>
+                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
+                    The 03 Single Bed Rooms
+                    <br />
+                    At Our Resort
+                  </Typography>
+                  <Box
+                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  >
+                    <Button
+                      variant="contained"
+                      sx={{
+                        marginTop:'20px',
+                        background: "#c2a482",
+                        color: "#7d6a4a",
+                        fontWeight: 700,
+                        boxShadow: "none",
+                        textTransform: "none",
+                        fontSize: 16,
+                        borderRadius: 0,
+                        px: 3,
+                        py: 1,
+                      }}
+                    >
+                      Book Now
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+              {/* Queen Size Room */}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 5,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  background: "rgba(255,255,255,0.9)",
+                  borderRadius: 3,
+                  p: 4,
+                }}
+              >
+                <img
+                  src="/bed2.jpg"
+                  alt="Queen Size Room"
+                  style={{ width: 220, height: 140, objectFit: "cover" }}
+                />
+                <Box
+                  sx={{
+                    minWidth: 220,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    position: "relative",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontFamily: "'Roboto', Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#000000ff",
+                    }}
+                  >
+                    QUEEN SIZE ROOMS
+                  </Typography>
+                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
+                    The 16 Queen Size Rooms
+                    <br />
+                    At Our Resort
+                  </Typography>
+                  <Box
+                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  >
+                    <Button
+                      variant="contained"
+                      sx={{
+                        background: "#c2a482",
+                        color: "#7d6a4a",
+                        fontWeight: 700,
+                        boxShadow: "none",
+                        textTransform: "none",
+                        fontSize: 16,
+                        borderRadius: 0,
+                        px: 3,
+                        py: 1,
+                      }}
+                    >
+                      Book Now
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+              {/* King Size Room */}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 5,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  background: "rgba(255,255,255,0.9)",
+                  borderRadius: 3,
+                  p: 4,
+                }}
+              >
+                <img
+                  src="/bed3.jpg"
+                  alt="King Size Room"
+                  style={{ width: 220, height: 140, objectFit: "cover" }}
+                />
+                <Box
+                  sx={{
+                    minWidth: 220,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    position: "relative",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontFamily: "'Roboto', Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#000000ff",
+                    }}
+                  >
+                    KING SIZE ROOMS
+                  </Typography>
+                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
+                    The 16 King Size Rooms
+                    <br />
+                    At Our Resort
+                  </Typography>
+                  <Box
+                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  >
+                    <Button
+                      variant="contained"
+                      sx={{
+                        background: "#c2a482",
+                        color: "#7d6a4a",
+                        fontWeight: 700,
+                        boxShadow: "none",
+                        textTransform: "none",
+                        fontSize: 16,
+                        borderRadius: 0,
+                        px: 3,
+                        py: 1,
+                      }}
+                    >
+                      Book Now
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
             </Box>
-            {/* Queen Size Room */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                background: "rgba(255,255,255,0.9)",
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              <img
-                src="/bed2.jpg"
-                alt="Queen Size Room"
-                style={{ width: 160, height: 100, objectFit: "cover" }}
-              />
+            {/* Right Column */}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {/* Suite Room */}
               <Box
                 sx={{
-                  minWidth: 180,
                   display: "flex",
-                  flexDirection: "column",
+                  gap: 5,
                   alignItems: "flex-start",
-                  position: "relative",
+                  justifyContent: "center",
+                  background: "rgba(255,255,255,0.9)",
+                  borderRadius: 3,
+                  p: 4,
                 }}
               >
-                <Typography
-                  variant="subtitle1"
-                  sx={{ fontWeight: 700, fontSize: "18px" }}
-                >
-                  QUEEN SIZE ROOMS
-                </Typography>
-                <Typography variant="body2" sx={{ my: 1, fontSize: "12px" }}>
-                  The 16 Queen Size Rooms
-                  <br />
-                  At Our Resort
-                </Typography>
+                <img
+                  src="/bed4.jpg"
+                  alt="Suite Room"
+                  style={{ width: 220, height: 140, objectFit: "cover" }}
+                />
                 <Box
-                  sx={{ position: "absolute", top: 70, right: 0, bottom: 0 }}
+                  sx={{
+                    minWidth: 220,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    position: "relative",
+                  }}
                 >
-                  <Button
-                    variant="contained"
+                  <Typography
+                    variant="h6"
                     sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 600,
-                      boxShadow: "none",
-                      textTransform: "none",
-                      fontSize: 14,
-                      borderRadius: 0,
+                      fontFamily: "'Roboto', Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#000000ff",
                     }}
                   >
-                    Book Now
-                  </Button>
+                    SUITE ROOMS
+                  </Typography>
+                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
+                    The 02 Suite Rooms
+                    <br />
+                    At Our Resort
+                  </Typography>
+                  <Box
+                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  >
+                    <Button
+                      variant="contained"
+                      sx={{
+                        background: "#c2a482",
+                        color: "#7d6a4a",
+                        fontWeight: 700,
+                        boxShadow: "none",
+                        textTransform: "none",
+                        fontSize: 16,
+                        borderRadius: 0,
+                        px: 3,
+                        py: 1,
+                      }}
+                    >
+                      Book Now
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-            {/* King Size Room */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                background: "rgba(255,255,255,0.9)",
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              <img
-                src="/bed3.jpg"
-                alt="King Size Room"
-                style={{ width: 160, height: 100, objectFit: "cover" }}
-              />
+              {/* Dormitory Room */}
               <Box
                 sx={{
-                  minWidth: 180,
                   display: "flex",
-                  flexDirection: "column",
+                  gap: 5,
                   alignItems: "flex-start",
-                  position: "relative",
+                  justifyContent: "center",
+                  background: "rgba(255,255,255,0.9)",
+                  borderRadius: 3,
+                  p: 4,
                 }}
               >
-                <Typography
-                  variant="subtitle1"
-                  sx={{ fontWeight: 700, fontSize: "18px" }}
-                >
-                  KING SIZE ROOMS
-                </Typography>
-                <Typography variant="body2" sx={{ my: 1, fontSize: "12px" }}>
-                  The 16 King Size Rooms
-                  <br />
-                  At Our Resort
-                </Typography>
+                <img
+                  src="/bed5.jpg"
+                  alt="Dormitory Room"
+                  style={{ width: 220, height: 140, objectFit: "cover" }}
+                />
                 <Box
-                  sx={{ position: "absolute", top: 70, right: 0, bottom: 0 }}
+                  sx={{
+                    minWidth: 220,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    position: "relative",
+                  }}
                 >
-                  <Button
-                    variant="contained"
+                  <Typography
+                    variant="h6"
                     sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 600,
-                      boxShadow: "none",
-                      textTransform: "none",
-                      fontSize: 14,
-                      borderRadius: 0,
+                      fontFamily: "'Roboto', Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#000000ff",
                     }}
                   >
-                    Book Now
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-          {/* Right Column */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {/* Suite Room */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                background: "rgba(255,255,255,0.9)",
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              <img
-                src="/bed4.jpg"
-                alt="Suite Room"
-                style={{ width: 160, height: 100, objectFit: "cover" }}
-              />
-              <Box
-                sx={{
-                  minWidth: 180,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  position: "relative",
-                }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  sx={{ fontWeight: 700, fontSize: "18px" }}
-                >
-                  SUITE ROOMS
-                </Typography>
-                <Typography variant="body2" sx={{ my: 1, fontSize: "12px" }}>
-                  The 02 Suite Rooms
-                  <br />
-                  At Our Resort
-                </Typography>
-                <Box
-                  sx={{ position: "absolute", top: 70, right: 0, bottom: 0 }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 600,
-                      boxShadow: "none",
-                      textTransform: "none",
-                      fontSize: 14,
-                      borderRadius: 0,
-                    }}
+                    DORMITORY ROOMS
+                  </Typography>
+                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
+                    The 05 Dormitory Rooms
+                    <br />
+                    At Our Resort
+                  </Typography>
+                  <Box
+                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
                   >
-                    Book Now
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
-            {/* Dormitory Room */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                background: "rgba(255,255,255,0.9)",
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              <img
-                src="/bed5.jpg"
-                alt="Dormitory Room"
-                style={{ width: 160, height: 100, objectFit: "cover" }}
-              />
-              <Box
-                sx={{
-                  minWidth: 180,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  position: "relative",
-                }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  sx={{ fontWeight: 700, fontSize: "18px" }}
-                >
-                  DORMITORY ROOMS
-                </Typography>
-                <Typography variant="body2" sx={{ my: 1, fontSize: "12px" }}>
-                  The 05 Dormitory Rooms
-                  <br />
-                  At Our Resort
-                </Typography>
-                <Box
-                  sx={{ position: "absolute", top: 70, right: 0, bottom: 0 }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 600,
-                      boxShadow: "none",
-                      textTransform: "none",
-                      fontSize: 14,
-                      borderRadius: 0,
-                    }}
-                  >
-                    Book Now
-                  </Button>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        background: "#c2a482",
+                        color: "#7d6a4a",
+                        fontWeight: 700,
+                        boxShadow: "none",
+                        textTransform: "none",
+                        fontSize: 16,
+                        borderRadius: 0,
+                        px: 3,
+                        py: 1,
+                      }}
+                    >
+                      Book Now
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
             </Box>
           </Box>
         </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 700,
-            textAlign: "center",
-            mb: 2,
-            mt: 2,
-            color: "#222",
-            letterSpacing: 1,
-            fontSize: 20,
-          }}
-        >
-          ABOUT US
-        </Typography>
+      </Container>
+      <Container maxWidth={false} sx={{ px: 0 }}>
         <Box
           sx={{
             width: "100%",
@@ -639,6 +675,8 @@ const Vanaalaym = () => {
             </Typography>
           </Box>
         </Box>
+      </Container>
+      <Container maxWidth={false} sx={{ px: 0 }}>
         <Box sx={{ width: "100%", mt: 6, mb: 2 }}>
           <Typography
             variant="h5"
@@ -678,15 +716,17 @@ const Vanaalaym = () => {
                 pointerEvents: "none",
               }}
             >
-              <svg
-                width="36"
-                height="18"
-                viewBox="0 0 36 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polygon points="0,0 18,18 36,0" fill="red" />
-              </svg>
+              <div style={{ marginTop: "18px" }}>
+                <svg
+                  width="36"
+                  height="18"
+                  viewBox="0 0 36 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polygon points="0,0 18,18 36,0" fill="#fff" />
+                </svg>
+              </div>
             </Box>
             <Box
               sx={{
@@ -722,6 +762,7 @@ const Vanaalaym = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    overflowX: "hidden",
                     borderRadius: 1,
                   }}
                 >
@@ -729,7 +770,7 @@ const Vanaalaym = () => {
                     src={img}
                     alt={`Gallery ${idx + 1}`}
                     style={{
-                      width: "100%",
+                      width: "200px",
                       height: "100%",
                       objectFit: "cover",
                     }}
@@ -739,6 +780,8 @@ const Vanaalaym = () => {
             </Box>
           </Box>
         </Box>
+      </Container>
+      <Container maxWidth={false} sx={{ px: 0 }}>
         <Box sx={{ width: "100%", marginTop: "10%", mb: 2 }}>
           <Typography
             variant="h5"
@@ -767,7 +810,7 @@ const Vanaalaym = () => {
             Every Moment Here Contributes To The Growth Of Trees And A Greener
             Tomorrow.
           </Typography>
-          <Box
+          {/* <Box
             sx={{
               width: "100%",
               maxWidth: 900,
@@ -785,8 +828,8 @@ const Vanaalaym = () => {
               position: "relative",
               opacity: 0.95,
             }}
-          >
-            <Box
+          > */}
+            {/* <Box
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
@@ -847,8 +890,8 @@ const Vanaalaym = () => {
                   </Typography>
                 </Box>
               ))}
-            </Box>
-            <Box
+            </Box> */}
+            {/* <Box
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
@@ -907,10 +950,409 @@ const Vanaalaym = () => {
                   </Typography>
                 </Box>
               ))}
+            </Box> */}
+          {/* </Box> */}
+          <Box sx={{ width: "100%", mt: 8, mb: 2 }}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 700,
+                textAlign: "center",
+                mb: 2,
+                color: "#a07c54",
+                letterSpacing: 1,
+              }}
+            >
+              WHY CHOOSE US?
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                textAlign: "center",
+                color: "#222",
+                mb: 2,
+                fontWeight: 500,
+                fontSize: 16,
+              }}
+            >
+              At Vanaalayam, You Don't Just Stay — You Experience Nature.
+              <br />
+              Every Moment Here Contributes To The Growth Of Trees And A Greener
+              Tomorrow.
+            </Typography>
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: 900,
+                margin: "0 auto",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                py: 4,
+                px: { xs: 2, md: 4 },
+                borderRadius: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                mb: 2,
+                position: "relative",
+                opacity: 0.95,
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: { xs: 3, md: 6 },
+                  width: "100%",
+                  mb: 2,
+                }}
+              >
+                {[
+                  { icon: "/icon1.png", label: "GREEN CAMPUS" },
+                  { icon: "/icon2.png", label: "PEACEFUL STAY AMIDST NATURE" },
+                  { icon: "/icon3.png", label: "NATURE-BLENDED" },
+                ].map((item, idx) => (
+                  <Box
+                    key={item.label}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: 180,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 38,
+                        height: 38,
+                        mb: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        src={item.icon}
+                        alt={item.label}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          filter:
+                            "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </Box>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        color: "#a07c54",
+                        fontWeight: 700,
+                        fontSize: 15,
+                        textAlign: "center",
+                        mb: 0,
+                      }}
+                    >
+                      {item.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: { xs: 3, md: 6 },
+                  width: "100%",
+                }}
+              >
+                {[
+                  { icon: "/icon4.png", label: "PLASTIC-FREE ENVIRONMENT" },
+                  { icon: "/icon5.png", label: "COMMUNITY-BUILT ECO SPACE" },
+                ].map((item, idx) => (
+                  <Box
+                    key={item.label}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: 180,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 38,
+                        height: 38,
+                        mb: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        src={item.icon}
+                        alt={item.label}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          filter:
+                            "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </Box>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        color: "#a07c54",
+                        fontWeight: 700,
+                        fontSize: 15,
+                        textAlign: "center",
+                        mb: 0,
+                      }}
+                    >
+                      {item.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
             </Box>
           </Box>
+          <Box
+            sx={{
+              width: "100%",
+              mt: 6,
+              mb: 0,
+              display: "flex",
+              py: 0,
+              justifyContent: "center",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: "center",
+                background: "#aab28b",
+                borderRadius: 0,
+                maxWidth: 1250,
+                width: "100%",
+                px: { xs: 2, md: 4 },
+                py: { xs: 3, md: 4 },
+                gap: { xs: 3, md: 4 },
+                boxShadow: "none",
+              }}
+            >
+              <Box
+                sx={{
+                  flex: 1,
+                  minWidth: 320,
+                  maxWidth: 420,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src="/about.jpg"
+                  alt="Nature Stay"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: 12,
+                    objectFit: "cover",
+                    maxHeight: 320,
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  flex: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  px: { xs: 0, md: 2 },
+                }}
+              >
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: "#fff",
+                    mb: 2,
+                    textAlign: "left",
+                    letterSpacing: 1,
+                    fontSize: { xs: 22, md: 28 },
+                    fontFamily: "Montserrat, sans-serif",
+                  }}
+                >
+                  ACTIVITIES AT OUR NATURE STAY
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "#fff",
+                    fontSize: { xs: 15, md: 18 },
+                    lineHeight: 1.8,
+                    mb: 3,
+                    textAlign: "left",
+                    fontFamily: "Montserrat, sans-serif",
+                  }}
+                >
+                  At Vanaalayam, Nature Meets Community And Learning In A
+                  Plastic-Free Environment. Guests Can Adopt A Tree, Contribute
+                  To Saplings, Or Participate In The Adopt A Tree Program, Where
+                  The Foundation Plants, Nurtures, And Monitors The Growth Of A
+                  Tree On Your Behalf. Guests Can Walk Through Our Lush Green
+                  Campus And Enjoy Pure, Nature-Friendly Food, Or Host Small
+                  Gatherings, Workshops, Or Cultural Programs Amid The Natural
+                  Surroundings. Every Visit Supports Conservation And Helps Grow
+                  A Greener, Sustainable Tomorrow.
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{
+                    background: "#c2a482",
+                    color: "#7d6a4a",
+                    fontWeight: 700,
+                    boxShadow: "none",
+                    textTransform: "none",
+                    fontSize: 16,
+                    borderRadius: 0,
+                    px: 4,
+                    py: 1,
+                    alignSelf: "flex-start",
+                    fontFamily: "Montserrat, sans-serif",
+                  }}
+                >
+                  KNOW MORE
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              width: "100%",
+              mt: 0,
+              mb: 6,
+              display: "flex",
+              justifyContent: "center",
+              position: "relative",
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: 1200,
+                px: { xs: 2, md: 4 },
+                py: { xs: 4, md: 6 },
+                // background: "rgba(255,255,255,0.7)",
+                borderRadius: 0,
+                boxShadow: "none",
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 700,
+                  textAlign: "center",
+                  mb: 4,
+                  color: "#222",
+                  letterSpacing: 1,
+                  fontSize: 22,
+                }}
+              >
+                NEAR BY
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  gap: { xs: 4, md: 6 },
+                }}
+              >
+                {[
+                  { img: "/nearby1.jpg", label: "ISA FOUNDATION" },
+                  { img: "/nearby3.jpg", label: "OOTY" },
+                  { img: "/nearby4.jpg", label: "SIRUVANI WATERFALLS" },
+                  { img: "/nearby2.jpg", label: "AIRPORT" },
+                ].map((item, idx) => (
+                  <Box
+                    key={item.label}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: { xs: "100%", md: 220 },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 220,
+                        height: 150,
+                        mb: 2,
+                        background: "#eee",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                      }}
+                    >
+                      <img
+                        src={item.img}
+                        alt={item.label}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          borderRadius: 0,
+                        }}
+                      />
+                    </Box>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        color: "#222",
+                        fontWeight: 700,
+                        fontSize: 16,
+                        textAlign: "center",
+                        letterSpacing: 1,
+                      }}
+                    >
+                      {item.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+            {/* Optional faint background overlay for nature effect */}
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 0,
+                backgroundImage: "url(/about.jpg)",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 0.18,
+                pointerEvents: "none",
+                borderRadius: 0,
+              }}
+            />
+          </Box>
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };
