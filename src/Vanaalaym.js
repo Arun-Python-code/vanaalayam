@@ -282,7 +282,7 @@ const Vanaalaym = () => {
                     <Button
                       variant="contained"
                       sx={{
-                        marginTop:'20px',
+                        marginTop: "20px",
                         background: "#c2a482",
                         color: "#7d6a4a",
                         fontWeight: 700,
@@ -829,7 +829,7 @@ const Vanaalaym = () => {
               opacity: 0.95,
             }}
           > */}
-            {/* <Box
+          {/* <Box
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
@@ -891,7 +891,7 @@ const Vanaalaym = () => {
                 </Box>
               ))}
             </Box> */}
-            {/* <Box
+          {/* <Box
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
@@ -1350,6 +1350,342 @@ const Vanaalaym = () => {
                 borderRadius: 0,
               }}
             />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            mt: 6,
+            mb: 2,
+            display: "flex",
+            justifyContent: "center",
+            background: "#a07c54",
+            py: { xs: 4, md: 6 },
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              maxWidth: 1200,
+              width: "100%",
+              gap: { xs: 4, md: 6 },
+            }}
+          >
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: 280,
+                maxWidth: 400,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src="/plant.jpg"
+                alt="Visionary Behind Vanaalayam"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 0,
+                  objectFit: "cover",
+                  maxHeight: 320,
+                }}
+              />
+            </Box>
+            <Box
+              sx={{
+                flex: 2,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                px: { xs: 0, md: 2 },
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 700,
+                  color: "#fff",
+                  mb: 2,
+                  textAlign: "left",
+                  letterSpacing: 1,
+                  fontSize: { xs: 20, md: 26 },
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                VISIONARY BEHIND VANAALAYAM
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "#fff",
+                  fontSize: { xs: 15, md: 18 },
+                  lineHeight: 1.8,
+                  mb: 0,
+                  textAlign: "left",
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                Vanaalayam, A Part Of The Vanam India Foundation, Was Founded By
+                Visionary Industrialists And Agriculturalists From Tirupur,
+                Coimbatore, And Erode. Committed To Environmental Conservation
+                And Sustainable Living, They Envisioned A Green Sanctuary
+                Promoting Plastic Free Practices, Tree Adoption, And Community
+                Engagement. Visitors Can Walk Through Lush Greenery, Connect
+                With Nature, And Participate In Initiatives That Support
+                Sustainability. Guided By Their Passion, Vanaalayam Continues To
+                Inspire Learning, Reflection, And Meaningful Action For A
+                Greener Tomorrow.
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            background: "#a07c54",
+            py: { xs: 6, md: 8 },
+            px: { xs: 2, md: 4 },
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {/* ENQUIRY NOW Button - sticky right with transition */}
+          <Box
+            sx={{
+              position: "absolute",
+              top: { xs: 32, md: 40 },
+              right: 0,
+              bottom: 20,
+              zIndex: 2,
+              transition: "right 0.3s",
+              display: { xs: "none", md: "block" },
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                background: "#d2b8a3",
+                color: "#7d6a4a",
+                fontWeight: 700,
+                borderRadius: 0,
+                boxShadow: "none",
+                textTransform: "none",
+                fontSize: 18,
+                px: 2,
+                py: 1,
+                writingMode: "vertical-rl",
+                textOrientation: "mixed",
+                letterSpacing: 2,
+                minHeight: 120,
+                minWidth: 48,
+                transition: "background 0.3s",
+                "&:hover": {
+                  background: "#c2a482",
+                  color: "#7d6a4a",
+                },
+              }}
+            >
+              ENQUIRY NOW
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: 1200,
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 6, md: 0 },
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+            }}
+          >
+            {/* Contact */}
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: 260,
+                px: { xs: 0, md: 2 },
+                mb: { xs: 4, md: 0 },
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#fff",
+                  fontWeight: 700,
+                  mb: 1,
+                  fontSize: 22,
+                  fontFamily: "Montserrat, sans-serif",
+                  borderBottom: "2px solid #fff",
+                  display: "inline-block",
+                  pb: 0.5,
+                }}
+              >
+                CONTACT
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mt: 2,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                ADDRESS: VANAALAYAM,\nTRICHY RD, PALLADAM,\nTAMIL NADU 641662
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                PHONE : 9791346444
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9791396444
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                MAIL ID :<br />
+                frontoffice@vanaalayamretreat.com
+              </Typography>
+            </Box>
+            {/* Facilities */}
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: 220,
+                px: { xs: 0, md: 2 },
+                mb: { xs: 4, md: 0 },
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#fff",
+                  fontWeight: 700,
+                  mb: 1,
+                  fontSize: 22,
+                  fontFamily: "Montserrat, sans-serif",
+                  borderBottom: "2px solid #fff",
+                  display: "inline-block",
+                  pb: 0.5,
+                }}
+              >
+                FACILITIES
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mt: 2,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                ROOM SERVICE
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                FREE WI-FI
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                FREE PARKING
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mb: 1,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                UNIQUE GARDENS
+              </Typography>
+            </Box>
+            {/* Location */}
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: 260,
+                px: { xs: 0, md: 2 },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#fff",
+                  fontWeight: 700,
+                  mb: 1,
+                  fontSize: 22,
+                  fontFamily: "Montserrat, sans-serif",
+                  borderBottom: "2px solid #fff",
+                  display: "inline-block",
+                  pb: 0.5,
+                }}
+              >
+                LOCATION
+              </Typography>
+              <Box
+                sx={{
+                  mt: 2,
+                  width: 260,
+                  height: 180,
+                  background: "#fff",
+                  borderRadius: 2,
+                  overflow: "hidden",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/map.png"
+                  alt="Vanaalayam Location"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Container>
