@@ -6,6 +6,10 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
 
 const menuItems = [
   "HOME",
@@ -209,26 +213,29 @@ const Vanaalaym = () => {
             position: "relative",
           }}
         >
+          {/* Section Title */}
           <Typography
             variant="h5"
             sx={{
-              fontFamily: "'Roboto', Arial, sans-serif",
-              fontWeight: 300,
-              fontSize: "24px",
+              fontFamily: "Poppins, Arial, sans-serif",
+              fontWeight: 600,
+              fontSize: "40px",
               textAlign: "center",
-              mb: 4,
-              color: "#0e0000ff",
-              letterSpacing: 2,
+              mb: 6,
+              color: "#000",
+              letterSpacing: 4,
             }}
           >
             OFFERINGS
           </Typography>
+
+          {/* Two Columns */}
           <Box
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: 10, // Increased gap between cards
-              maxWidth: 1300, // Increased max width
+              gap: 10,
+              maxWidth: 1300,
               margin: "0 auto",
             }}
           >
@@ -238,67 +245,66 @@ const Vanaalaym = () => {
               <Box
                 sx={{
                   display: "flex",
-                  gap: 5, // Increased gap inside card
+                  gap: 5,
                   alignItems: "flex-start",
                   justifyContent: "center",
                   background: "rgba(255,255,255,0.9)",
                   borderRadius: 3,
-                  p: 4, // Increased padding
+                  p: 4,
                 }}
               >
                 <img
                   src="/bed1.jpg"
                   alt="Single Bed Room"
-                  style={{ width: 220, height: "100%", objectFit: "cover" }} // Increased image size
+                  style={{ width: 220, height: 160, objectFit: "cover" }}
                 />
-                <Box
-                  sx={{
-                    minWidth: 220,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    position: "relative",
-                  }}
-                >
+                <Box sx={{ minWidth: 220 }}>
                   <Typography
-                    variant="h6"
                     sx={{
-                      fontFamily: "'Roboto', Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#000000ff",
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "22px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      color: "#000",
                     }}
                   >
                     SINGLE BED ROOMS
                   </Typography>
-                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
-                    The 03 Single Bed Rooms
-                    <br />
-                    At Our Resort
-                  </Typography>
-                  <Box
-                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  <Typography
+                    sx={{
+                      my: 2,
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#111",
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{
-                        marginTop: "20px",
-                        background: "#c2a482",
-                        color: "#7d6a4a",
-                        fontWeight: 700,
+                    The 03 Single Bed Rooms <br /> At Our Resort
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: "#c2a482",
+                      color: "#7d6a4a",
+                      fontWeight: 700,
+                      textTransform: "none",
+                      fontSize: 16,
+                      borderRadius: 0,
+                      boxShadow: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": {
+                        backgroundColor: "#b79773",
                         boxShadow: "none",
-                        textTransform: "none",
-                        fontSize: 16,
-                        borderRadius: 0,
-                        px: 3,
-                        py: 1,
-                      }}
-                    >
-                      Book Now
-                    </Button>
-                  </Box>
+                      },
+                    }}
+                  >
+                    Book Now
+                  </Button>
                 </Box>
               </Box>
+
               {/* Queen Size Room */}
               <Box
                 sx={{
@@ -314,55 +320,55 @@ const Vanaalaym = () => {
                 <img
                   src="/bed2.jpg"
                   alt="Queen Size Room"
-                  style={{ width: 220, height: 140, objectFit: "cover" }}
+                  style={{ width: 220, height: 160, objectFit: "cover" }}
                 />
-                <Box
-                  sx={{
-                    minWidth: 220,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    position: "relative",
-                  }}
-                >
+                <Box sx={{ minWidth: 220 }}>
                   <Typography
-                    variant="h6"
                     sx={{
-                      fontFamily: "'Roboto', Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#000000ff",
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "22px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      color: "#000",
                     }}
                   >
                     QUEEN SIZE ROOMS
                   </Typography>
-                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
-                    The 16 Queen Size Rooms
-                    <br />
-                    At Our Resort
-                  </Typography>
-                  <Box
-                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  <Typography
+                    sx={{
+                      my: 2,
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#111",
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{
-                        background: "#c2a482",
-                        color: "#7d6a4a",
-                        fontWeight: 700,
+                    The 16 Queen Size Rooms <br /> At Our Resort
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: "#c2a482",
+                      color: "#7d6a4a",
+                      fontWeight: 700,
+                      textTransform: "none",
+                      fontSize: 16,
+                      borderRadius: 0,
+                      boxShadow: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": {
+                        backgroundColor: "#b79773",
                         boxShadow: "none",
-                        textTransform: "none",
-                        fontSize: 16,
-                        borderRadius: 0,
-                        px: 3,
-                        py: 1,
-                      }}
-                    >
-                      Book Now
-                    </Button>
-                  </Box>
+                      },
+                    }}
+                  >
+                    Book Now
+                  </Button>
                 </Box>
               </Box>
+
               {/* King Size Room */}
               <Box
                 sx={{
@@ -378,56 +384,56 @@ const Vanaalaym = () => {
                 <img
                   src="/bed3.jpg"
                   alt="King Size Room"
-                  style={{ width: 220, height: 140, objectFit: "cover" }}
+                  style={{ width: 220, height: 160, objectFit: "cover" }}
                 />
-                <Box
-                  sx={{
-                    minWidth: 220,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    position: "relative",
-                  }}
-                >
+                <Box sx={{ minWidth: 220 }}>
                   <Typography
-                    variant="h6"
                     sx={{
-                      fontFamily: "'Roboto', Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#000000ff",
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "22px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      color: "#000",
                     }}
                   >
                     KING SIZE ROOMS
                   </Typography>
-                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
-                    The 16 King Size Rooms
-                    <br />
-                    At Our Resort
-                  </Typography>
-                  <Box
-                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  <Typography
+                    sx={{
+                      my: 2,
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#111",
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{
-                        background: "#c2a482",
-                        color: "#7d6a4a",
-                        fontWeight: 700,
+                    The 16 King Size Rooms <br /> At Our Resort
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: "#c2a482",
+                      color: "#7d6a4a",
+                      fontWeight: 700,
+                      textTransform: "none",
+                      fontSize: 16,
+                      borderRadius: 0,
+                      boxShadow: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": {
+                        backgroundColor: "#b79773",
                         boxShadow: "none",
-                        textTransform: "none",
-                        fontSize: 16,
-                        borderRadius: 0,
-                        px: 3,
-                        py: 1,
-                      }}
-                    >
-                      Book Now
-                    </Button>
-                  </Box>
+                      },
+                    }}
+                  >
+                    Book Now
+                  </Button>
                 </Box>
               </Box>
             </Box>
+
             {/* Right Column */}
             <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {/* Suite Room */}
@@ -442,58 +448,58 @@ const Vanaalaym = () => {
                   p: 4,
                 }}
               >
-                <img
-                  src="/bed4.jpg"
-                  alt="Suite Room"
-                  style={{ width: 220, height: 140, objectFit: "cover" }}
-                />
-                <Box
-                  sx={{
-                    minWidth: 220,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    position: "relative",
-                  }}
-                >
+                <Box sx={{ minWidth: 220 }}>
                   <Typography
-                    variant="h6"
                     sx={{
-                      fontFamily: "'Roboto', Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#000000ff",
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "22px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      color: "#000",
                     }}
                   >
                     SUITE ROOMS
                   </Typography>
-                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
-                    The 02 Suite Rooms
-                    <br />
-                    At Our Resort
-                  </Typography>
-                  <Box
-                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  <Typography
+                    sx={{
+                      my: 2,
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#111",
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{
-                        background: "#c2a482",
-                        color: "#7d6a4a",
-                        fontWeight: 700,
+                    The 02 Suite Rooms <br /> At Our Resort
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: "#c2a482",
+                      color: "#7d6a4a",
+                      fontWeight: 700,
+                      textTransform: "none",
+                      fontSize: 16,
+                      borderRadius: 0,
+                      boxShadow: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": {
+                        backgroundColor: "#b79773",
                         boxShadow: "none",
-                        textTransform: "none",
-                        fontSize: 16,
-                        borderRadius: 0,
-                        px: 3,
-                        py: 1,
-                      }}
-                    >
-                      Book Now
-                    </Button>
-                  </Box>
+                      },
+                    }}
+                  >
+                    Book Now
+                  </Button>
                 </Box>
+                <img
+                  src="/bed4.jpg"
+                  alt="Suite Room"
+                  style={{ width: 220, height: 160, objectFit: "cover" }}
+                />
               </Box>
+
               {/* Dormitory Room */}
               <Box
                 sx={{
@@ -506,63 +512,88 @@ const Vanaalaym = () => {
                   p: 4,
                 }}
               >
-                <img
-                  src="/bed5.jpg"
-                  alt="Dormitory Room"
-                  style={{ width: 220, height: 140, objectFit: "cover" }}
-                />
-                <Box
-                  sx={{
-                    minWidth: 220,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    position: "relative",
-                  }}
-                >
+                <Box sx={{ minWidth: 220 }}>
                   <Typography
-                    variant="h6"
                     sx={{
-                      fontFamily: "'Roboto', Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#000000ff",
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "22px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      color: "#000",
                     }}
                   >
                     DORMITORY ROOMS
                   </Typography>
-                  <Typography variant="body1" sx={{ my: 2, fontSize: "16px" }}>
-                    The 05 Dormitory Rooms
-                    <br />
-                    At Our Resort
-                  </Typography>
-                  <Box
-                    sx={{ position: "absolute", top: 98, right: 10, bottom: 0 }}
+                  <Typography
+                    sx={{
+                      my: 2,
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "18px",
+                      color: "#111",
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{
-                        background: "#c2a482",
-                        color: "#7d6a4a",
-                        fontWeight: 700,
+                    The 05 Dormitory Rooms <br /> At Our Resort
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: "#c2a482",
+                      color: "#7d6a4a",
+                      fontWeight: 700,
+                      textTransform: "none",
+                      fontSize: 16,
+                      borderRadius: 0,
+                      boxShadow: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": {
+                        backgroundColor: "#b79773",
                         boxShadow: "none",
-                        textTransform: "none",
-                        fontSize: 16,
-                        borderRadius: 0,
-                        px: 3,
-                        py: 1,
-                      }}
-                    >
-                      Book Now
-                    </Button>
-                  </Box>
+                      },
+                    }}
+                  >
+                    Book Now
+                  </Button>
                 </Box>
+                <img
+                  src="/bed5.jpg"
+                  alt="Dormitory Room"
+                  style={{ width: 220, height: 160, objectFit: "cover" }}
+                />
               </Box>
             </Box>
           </Box>
         </Box>
       </Container>
+
       <Container maxWidth={false} sx={{ px: 0 }}>
+        {/* ABOUT US Title with same background */}
+        <Box
+          sx={{
+            width: "100%",
+            py: 4,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "Poppins, Arial, sans-serif",
+              fontWeight: 700,
+              textAlign: "center",
+              letterSpacing: 2,
+              fontSize: 26,
+            }}
+          >
+            ABOUT US
+          </Typography>
+        </Box>
+
+        {/* ABOUT VANAALAYAM content box */}
         <Box
           sx={{
             width: "100%",
@@ -578,7 +609,7 @@ const Vanaalaym = () => {
         >
           <Box
             sx={{
-              background: "rgba(151, 156, 123, 0.95)",
+              background: "rgba(151, 156, 123, 0.95)", // same background color
               borderRadius: 3,
               maxWidth: 600,
               width: "100%",
@@ -594,6 +625,7 @@ const Vanaalaym = () => {
             <Typography
               variant="h6"
               sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
                 fontWeight: 700,
                 color: "#fff",
                 textAlign: "center",
@@ -604,9 +636,11 @@ const Vanaalaym = () => {
             >
               ABOUT VANAALAYAM
             </Typography>
+
             <Typography
               variant="body2"
               sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
                 color: "#fff",
                 textAlign: "center",
                 mb: 3,
@@ -620,9 +654,11 @@ const Vanaalaym = () => {
               Than A Lush Retreat—It Embodies A Vibrant Commitment To
               Sustainability And Community Harmony.
             </Typography>
+
             <Typography
               variant="h6"
               sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
                 fontWeight: 700,
                 color: "#fff",
                 textAlign: "center",
@@ -636,6 +672,7 @@ const Vanaalaym = () => {
             <Typography
               variant="body2"
               sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
                 color: "#fff",
                 textAlign: "center",
                 mb: 3,
@@ -647,9 +684,11 @@ const Vanaalaym = () => {
               Celebrates Mindfully, And Works Collectively Towards Environmental
               Growth
             </Typography>
+
             <Typography
               variant="h6"
               sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
                 fontWeight: 700,
                 color: "#fff",
                 textAlign: "center",
@@ -663,6 +702,7 @@ const Vanaalaym = () => {
             <Typography
               variant="body2"
               sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
                 color: "#fff",
                 textAlign: "center",
                 fontSize: 15,
@@ -676,6 +716,7 @@ const Vanaalaym = () => {
           </Box>
         </Box>
       </Container>
+
       <Container maxWidth={false} sx={{ px: 0 }}>
         <Box sx={{ width: "100%", mt: 6, mb: 2 }}>
           <Typography
@@ -1192,7 +1233,7 @@ const Vanaalaym = () => {
                     fontFamily: "Montserrat, sans-serif",
                   }}
                 >
-                  ACTIVITIES AT OUR NATURE STAY
+                  AT VANAAIAYAM
                 </Typography>
                 <Typography
                   variant="body1"
