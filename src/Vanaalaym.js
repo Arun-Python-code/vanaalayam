@@ -713,7 +713,6 @@ const Vanaalaym = () => {
               backgroundPosition: "center",
               py: { xs: 6, md: 8 },
               px: 2,
-              position: "relative",
             }}
           >
             <Box
@@ -941,7 +940,6 @@ const Vanaalaym = () => {
             position: "relative",
             right: "25px",
             mb: { xs: 6, md: 8 },
-            position: "relative",
             display: "flex",
             justifyContent: "center",
           }}
@@ -1151,7 +1149,6 @@ const Vanaalaym = () => {
             background: "#a07c54",
             py: { xs: 6, md: 8 },
             px: { xs: 2, md: 4 },
-            position: "relative",
             display: "flex",
             justifyContent: "center",
           }}
