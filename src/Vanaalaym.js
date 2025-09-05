@@ -21,6 +21,16 @@ const menuItems = [
   "CONTACT US",
 ];
 
+const sectionMap = {
+  HOME: "toplogo",
+  OFFERINGS: "offerings",
+  "ABOUT US": "aboutus",
+  GALLERY: "gallery",
+  "WHY CHOOSE US?": "whychooseus",
+  FACILITIES: "facilities",
+  "CONTACT US": "contactus",
+};
+
 const ReserveButton = styled(Button)({
   background: "#c2a482",
   color: "#7d6a4a",
@@ -76,6 +86,16 @@ const Vanaalaym = () => {
 
   const banner = banners[current];
 
+  const handleMenuClick = (item) => {
+    const sectionId = sectionMap[item];
+    if (sectionId) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <Box>
       <AppBar
@@ -115,6 +135,7 @@ const Vanaalaym = () => {
                   color: "#222",
                   cursor: "pointer",
                 }}
+                onClick={() => handleMenuClick(item)}
               >
                 {item}
               </Typography>
@@ -128,10 +149,11 @@ const Vanaalaym = () => {
         sx={{
           position: "relative",
           width: "100%",
-          minHeight: 660,
+          minHeight: 780,
+          marginLeft: "0%",
           backgroundImage: `url(${banner.image})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "left",
           display: "flex",
           alignItems: "center",
           transition: "background-image 0.5s",
@@ -204,163 +226,136 @@ const Vanaalaym = () => {
         </Box>
       </Box>
       {/* Offerings Section - Updated UI */}
-      <Container maxWidth={false} sx={{ px: 0 }}>
+      <Container id="offerings" maxWidth={false} sx={{ px: 0 }}>
         <Box
           sx={{
-            width: "100%",
-            py: 10,
-            background: "rgba(255,255,255,0.7)",
-            position: "relative",
+            width: "90%",
+            py: { xs: 8, md: 8 },
+            px: { xs: 2, md: 6 },
+            background: "rgba(255,255,255,0.95)", // bright white overlay
           }}
         >
           {/* Section Title */}
           <Typography
-            variant="h5"
+            variant="h2"
             sx={{
               fontFamily: "Poppins, Arial, sans-serif",
-              fontWeight: 600,
-              fontSize: "40px",
+              fontWeight: 800,
+              fontSize: { xs: 32, md: 40 },
               textAlign: "center",
-              mb: 6,
+              mb: { xs: 6, md: 8 },
               color: "#000",
-              letterSpacing: 4,
+              letterSpacing: 2,
             }}
           >
             OFFERINGS
           </Typography>
 
-          {/* Two Columns */}
+          {/* Wrapper */}
           <Box
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: 10,
-              maxWidth: 1300,
-              margin: "0 auto",
+              rowGap: { xs: 6, md: 8 },
+              columnGap: { xs: 0, md: 8 },
+              maxWidth: 1200,
+              mx: "auto",
             }}
           >
-            {/* Left Column */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {/* Single Bed Room */}
+            {/* Reusable component pattern */}
+            {[
+              {
+                img: "/bed1.jpg",
+                title: "SINGLE BED ROOMS",
+                desc: "The 03 Single Bed Rooms At Our Resort",
+              },
+              {
+                img: "/bed4.jpg",
+                title: "SUITE ROOMS",
+                desc: "The 02 Suite Rooms At Our Resort",
+              },
+              {
+                img: "/bed2.jpg",
+                title: "QUEEN SIZE ROOMS",
+                desc: "The 16 Queen Size Rooms At Our Resort",
+              },
+              {
+                img: "/bed5.jpg",
+                title: "DORMITORY ROOMS",
+                desc: "The 05 Dormitory Rooms At Our Resort",
+              },
+              {
+                img: "/bed3.jpg",
+                title: "KING SIZE ROOMS",
+                desc: "The 16 King Size Rooms At Our Resort",
+              },
+            ].map((item, idx) => (
               <Box
+                key={idx}
                 sx={{
                   display: "flex",
-                  gap: 5,
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  background: "rgba(255,255,255,0.9)",
-                  borderRadius: 3,
-                  p: 4,
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: "center",
+                  gap: { xs: 3, md: 4 },
                 }}
               >
-                <img
-                  src="/bed1.jpg"
-                  alt="Single Bed Room"
-                  style={{ width: 220, height: 160, objectFit: "cover" }}
+                {/* Image */}
+                <Box
+                  component="img"
+                  src={item.img}
+                  alt={item.title}
+                  sx={{
+                    width: { xs: "100%", sm: 240, md: 280 },
+                    height: { xs: 180, md: 200 },
+                    objectFit: "cover",
+                    borderRadius: 2,
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+                    flexShrink: 0,
+                  }}
                 />
-                <Box sx={{ minWidth: 220 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "22px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      color: "#000",
-                    }}
-                  >
-                    SINGLE BED ROOMS
-                  </Typography>
-                  <Typography
-                    sx={{
-                      my: 2,
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#111",
-                    }}
-                  >
-                    The 03 Single Bed Rooms <br /> At Our Resort
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 700,
-                      textTransform: "none",
-                      fontSize: 16,
-                      borderRadius: 0,
-                      boxShadow: "none",
-                      px: 3,
-                      py: 1,
-                      "&:hover": {
-                        backgroundColor: "#b79773",
-                        boxShadow: "none",
-                      },
-                    }}
-                  >
-                    Book Now
-                  </Button>
-                </Box>
-              </Box>
 
-              {/* Queen Size Room */}
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 5,
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  background: "rgba(255,255,255,0.9)",
-                  borderRadius: 3,
-                  p: 4,
-                }}
-              >
-                <img
-                  src="/bed2.jpg"
-                  alt="Queen Size Room"
-                  style={{ width: 220, height: 160, objectFit: "cover" }}
-                />
-                <Box sx={{ minWidth: 220 }}>
+                {/* Text */}
+                <Box sx={{ flex: 1 }}>
                   <Typography
                     sx={{
                       fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "22px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
+                      fontWeight: 800,
+                      fontSize: { xs: 17, md: 25 },
                       color: "#000",
+                      mb: 1,
                     }}
                   >
-                    QUEEN SIZE ROOMS
+                    {item.title}
                   </Typography>
                   <Typography
                     sx={{
-                      my: 2,
                       fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
+                      fontWeight: 500,
+                      fontSize: { xs: 14, md: 20 },
+                      lineHeight: 1.9,
                       color: "#111",
+                      mb: 2.5,
                     }}
                   >
-                    The 16 Queen Size Rooms <br /> At Our Resort
+                    {item.desc}
                   </Typography>
                   <Button
-                    variant="contained"
+                    variant="outlined"
                     sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
+                      borderColor: "#7d6a4a", // deep brown border
+                      color: "#7d6a4a", // same brown text
                       fontWeight: 700,
                       textTransform: "none",
-                      fontSize: 16,
-                      borderRadius: 0,
-                      boxShadow: "none",
+                      fontSize: { xs: 14, md: 16 },
                       px: 3,
-                      py: 1,
+                      py: 0.75,
+                      borderWidth: 2,
+                      borderRadius: "4px",
+                      backgroundColor: "#efe7d9ff",
                       "&:hover": {
-                        backgroundColor: "#b79773",
-                        boxShadow: "none",
+                        backgroundColor: "#efe7d9ff", // faint brown shade
+                        borderColor: "#efe7d9ff",
+                        color: "#efe7d9ff",
                       },
                     }}
                   >
@@ -368,207 +363,12 @@ const Vanaalaym = () => {
                   </Button>
                 </Box>
               </Box>
-
-              {/* King Size Room */}
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 5,
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  background: "rgba(255,255,255,0.9)",
-                  borderRadius: 3,
-                  p: 4,
-                }}
-              >
-                <img
-                  src="/bed3.jpg"
-                  alt="King Size Room"
-                  style={{ width: 220, height: 160, objectFit: "cover" }}
-                />
-                <Box sx={{ minWidth: 220 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "22px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      color: "#000",
-                    }}
-                  >
-                    KING SIZE ROOMS
-                  </Typography>
-                  <Typography
-                    sx={{
-                      my: 2,
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#111",
-                    }}
-                  >
-                    The 16 King Size Rooms <br /> At Our Resort
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 700,
-                      textTransform: "none",
-                      fontSize: 16,
-                      borderRadius: 0,
-                      boxShadow: "none",
-                      px: 3,
-                      py: 1,
-                      "&:hover": {
-                        backgroundColor: "#b79773",
-                        boxShadow: "none",
-                      },
-                    }}
-                  >
-                    Book Now
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
-
-            {/* Right Column */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {/* Suite Room */}
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 5,
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  background: "rgba(255,255,255,0.9)",
-                  borderRadius: 3,
-                  p: 4,
-                }}
-              >
-                <Box sx={{ minWidth: 220 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "22px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      color: "#000",
-                    }}
-                  >
-                    SUITE ROOMS
-                  </Typography>
-                  <Typography
-                    sx={{
-                      my: 2,
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#111",
-                    }}
-                  >
-                    The 02 Suite Rooms <br /> At Our Resort
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 700,
-                      textTransform: "none",
-                      fontSize: 16,
-                      borderRadius: 0,
-                      boxShadow: "none",
-                      px: 3,
-                      py: 1,
-                      "&:hover": {
-                        backgroundColor: "#b79773",
-                        boxShadow: "none",
-                      },
-                    }}
-                  >
-                    Book Now
-                  </Button>
-                </Box>
-                <img
-                  src="/bed4.jpg"
-                  alt="Suite Room"
-                  style={{ width: 220, height: 160, objectFit: "cover" }}
-                />
-              </Box>
-
-              {/* Dormitory Room */}
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 5,
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  background: "rgba(255,255,255,0.9)",
-                  borderRadius: 3,
-                  p: 4,
-                }}
-              >
-                <Box sx={{ minWidth: 220 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "22px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      color: "#000",
-                    }}
-                  >
-                    DORMITORY ROOMS
-                  </Typography>
-                  <Typography
-                    sx={{
-                      my: 2,
-                      fontFamily: "Poppins, Arial, sans-serif",
-                      fontWeight: 300,
-                      fontSize: "18px",
-                      color: "#111",
-                    }}
-                  >
-                    The 05 Dormitory Rooms <br /> At Our Resort
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#c2a482",
-                      color: "#7d6a4a",
-                      fontWeight: 700,
-                      textTransform: "none",
-                      fontSize: 16,
-                      borderRadius: 0,
-                      boxShadow: "none",
-                      px: 3,
-                      py: 1,
-                      "&:hover": {
-                        backgroundColor: "#b79773",
-                        boxShadow: "none",
-                      },
-                    }}
-                  >
-                    Book Now
-                  </Button>
-                </Box>
-                <img
-                  src="/bed5.jpg"
-                  alt="Dormitory Room"
-                  style={{ width: 220, height: 160, objectFit: "cover" }}
-                />
-              </Box>
-            </Box>
+            ))}
           </Box>
         </Box>
       </Container>
 
-      <Container maxWidth={false} sx={{ px: 0 }}>
+      <Container id="aboutus" maxWidth={false} sx={{ px: 0 }}>
         {/* ABOUT US Title with same background */}
         <Box
           sx={{
@@ -596,7 +396,9 @@ const Vanaalaym = () => {
         {/* ABOUT VANAALAYAM content box */}
         <Box
           sx={{
-            width: "100%",
+            width: "1345px",
+            position: "relative",
+            right: "25px",
             minHeight: 420,
             display: "flex",
             alignItems: "center",
@@ -717,444 +519,294 @@ const Vanaalaym = () => {
         </Box>
       </Container>
 
-      <Container maxWidth={false} sx={{ px: 0 }}>
-        <Box sx={{ width: "100%", mt: 6, mb: 2 }}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 700,
-              fontSize: "18px",
-              textAlign: "center",
-              mb: 3,
-              color: "#222",
-              letterSpacing: 1,
-            }}
-          >
-            GALLERY
-          </Typography>
-          <Box
-            sx={{
-              position: "relative",
-              maxWidth: 900,
-              margin: "0 auto",
-              px: 2,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            {/* Arrow pointer */}
-            <Box
+      <Container id="gallery" maxWidth={false} sx={{ px: 0 }}>
+        <Container maxWidth={false} sx={{ px: 0 }}>
+          {/* GALLERY */}
+          <Box sx={{ width: "100%", mt: 6, mb: 4 }}>
+            <Typography
               sx={{
-                position: "absolute",
-                top: -18,
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: 36,
-                height: 18,
-                zIndex: 2,
-                overflow: "visible",
-                pointerEvents: "none",
+                fontFamily: "Poppins, Arial, sans-serif",
+                fontWeight: 800,
+                fontSize: { xs: 22, md: 28 },
+                textAlign: "center",
+                mb: 4,
+                color: "#111",
+                letterSpacing: 1,
               }}
             >
-              <div style={{ marginTop: "18px" }}>
+              GALLERY
+            </Typography>
+            <Box
+              sx={{
+                position: "relative",
+                maxWidth: 900,
+                margin: "0 auto",
+                px: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {/* Arrow pointer */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: -18,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 36,
+                  height: 18,
+                  zIndex: 2,
+                  overflow: "visible",
+                  pointerEvents: "none",
+                }}
+              >
+                <div style={{ marginTop: "18px" }}>
+                  <svg
+                    width="36"
+                    height="18"
+                    viewBox="0 0 36 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <polygon points="0,0 18,18 36,0" fill="#fff" />
+                  </svg>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  background: "#a07c54",
+                  borderRadius: 8,
+                  p: { xs: 2, md: 3 },
+                  display: "flex",
+                  gap: { xs: 2, md: 3 },
+                  justifyContent: "center",
+                  alignItems: "center",
+                  minHeight: 220,
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+                  flexWrap: "nowrap",
+                  width: "100%",
+                  maxWidth: 900,
+                }}
+              >
+                {[
+                  "/bed1.jpg",
+                  "/bed2.jpg",
+                  "/bed3.jpg",
+                  "/bed4.jpg",
+                  "/bed5.jpg",
+                ].map((img, idx) => (
+                  <Box
+                    key={img}
+                    sx={{
+                      width: { xs: 120, md: 220 },
+                      height: { xs: 90, md: 160 },
+                      overflow: "hidden",
+                      background: "#fff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      overflowX: "hidden",
+                      borderRadius: 1,
+                    }}
+                  >
+                    <img
+                      src={img}
+                      alt={`Gallery ${idx + 1}`}
+                      style={{
+                        width: "200px",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                position: "relative",
+                maxWidth: 1100,
+                mx: "auto",
+                px: 2,
+              }}
+            >
+              {/* Arrow pointer */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: -18,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 36,
+                  height: 18,
+                  zIndex: 2,
+                  pointerEvents: "none",
+                }}
+              >
                 <svg
                   width="36"
                   height="18"
                   viewBox="0 0 36 18"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <polygon points="0,0 18,18 36,0" fill="#fff" />
+                  <polygon points="0,0 18,18 36,0" fill="#ffffff" />
                 </svg>
-              </div>
+              </Box>
+
+              {/* Brown strip with images */}
+              <Box
+                sx={{
+                  background: "#a07c54",
+                  borderRadius: 2,
+                  p: { xs: 2, md: 3 },
+                  display: "flex",
+                  gap: { xs: 2, md: 3 },
+                  justifyContent: "center",
+                  alignItems: "center",
+
+                  minHeight: { xs: 180, md: 220 },
+                }}
+              >
+                {["/bed1.jpg", "/bed2.jpg", "/bed3.jpg", "/bed4.jpg"].map(
+                  (img, idx) => (
+                    <Box
+                      key={idx}
+                      sx={{
+                        width: { xs: 150, sm: 200, md: 240 },
+                        height: { xs: 110, sm: 140, md: 160 },
+                        borderRadius: 1,
+                        overflow: "hidden",
+                        background: "#fff",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        src={img}
+                        alt={`Gallery ${idx + 1}`}
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                      />
+                    </Box>
+                  )
+                )}
+              </Box>
             </Box>
+          </Box>
+
+          {/* WHY CHOOSE US */}
+          <Box
+            id="whychooseus"
+            sx={{
+              width: "1320px",
+              position: "relative",
+              right: "55px",
+              backgroundImage: "url(/about.jpg)", // faint bg like screenshot
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              py: { xs: 6, md: 8 },
+              px: 2,
+              position: "relative",
+            }}
+          >
             <Box
               sx={{
                 position: "absolute",
-                background: "#a07c54",
-                borderRadius: 8,
-                p: { xs: 2, md: 3 },
-                display: "flex",
-                gap: { xs: 2, md: 3 },
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: 220,
-                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                flexWrap: "nowrap",
-                width: "100%",
-                maxWidth: 900,
+                inset: 0,
+                backgroundColor: "rgba(255,255,255,0.85)", // white overlay
+                zIndex: 0,
               }}
-            >
-              {[
-                "/bed1.jpg",
-                "/bed2.jpg",
-                "/bed3.jpg",
-                "/bed4.jpg",
-                "/bed5.jpg",
-              ].map((img, idx) => (
-                <Box
-                  key={img}
-                  sx={{
-                    width: { xs: 120, md: 220 },
-                    height: { xs: 90, md: 160 },
-                    overflow: "hidden",
-                    background: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflowX: "hidden",
-                    borderRadius: 1,
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt={`Gallery ${idx + 1}`}
-                    style={{
-                      width: "200px",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
-      </Container>
-      <Container maxWidth={false} sx={{ px: 0 }}>
-        <Box sx={{ width: "100%", marginTop: "10%", mb: 2 }}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 700,
-              textAlign: "center",
-              mb: 2,
-              color: "#000",
-              letterSpacing: 1,
-            }}
-          >
-            WHY CHOOSE US?
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              textAlign: "center",
-              color: "#222",
-              mb: 2,
-              fontWeight: 500,
-              fontSize: 16,
-            }}
-          >
-            At Vanaalayam, You Don't Just Stay — You Experience Nature.
-            <br />
-            Every Moment Here Contributes To The Growth Of Trees And A Greener
-            Tomorrow.
-          </Typography>
-          {/* <Box
-            sx={{
-              width: "100%",
-              maxWidth: 900,
-              margin: "8% auto 0 auto",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              py: 4,
-              px: { xs: 2, md: 4 },
-              borderRadius: 3,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              mb: 2,
-              position: "relative",
-              opacity: 0.95,
-            }}
-          > */}
-          {/* <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                justifyContent: "center",
-                alignItems: "center",
-                gap: { xs: 3, md: 6 },
-                width: "100%",
-                mb: 2,
-              }}
-            >
-              {[
-                { icon: "/icon1.png", label: "GREEN CAMPUS" },
-                { icon: "/icon2.png", label: "PEACEFUL STAY AMIDST NATURE" },
-                { icon: "/icon3.png", label: "NATURE-BLENDED" },
-              ].map((item, idx) => (
-                <Box
-                  key={item.label}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: 180,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 38,
-                      height: 38,
-                      mb: 1,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      src={item.icon}
-                      alt={item.label}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        filter:
-                          "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{
-                      color: "#a07c54",
-                      fontWeight: 700,
-                      fontSize: 15,
-                      textAlign: "center",
-                      mb: 0,
-                    }}
-                  >
-                    {item.label}
-                  </Typography>
-                </Box>
-              ))}
-            </Box> */}
-          {/* <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                justifyContent: "center",
-                alignItems: "center",
-                gap: { xs: 3, md: 6 },
-                width: "100%",
-              }}
-            >
-              {[
-                { icon: "/icon4.png", label: "PLASTIC-FREE ENVIRONMENT" },
-                { icon: "/icon5.png", label: "COMMUNITY-BUILT ECO SPACE" },
-              ].map((item, idx) => (
-                <Box
-                  key={item.label}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: 180,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 38,
-                      height: 38,
-                      mb: 1,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      src={item.icon}
-                      alt={item.label}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        filter:
-                          "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{
-                      color: "#a07c54",
-                      fontWeight: 700,
-                      fontSize: 15,
-                      textAlign: "center",
-                      mb: 0,
-                    }}
-                  >
-                    {item.label}
-                  </Typography>
-                </Box>
-              ))}
-            </Box> */}
-          {/* </Box> */}
-          <Box sx={{ width: "100%", mt: 8, mb: 2 }}>
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 700,
-                textAlign: "center",
-                mb: 2,
-                color: "#a07c54",
-                letterSpacing: 1,
-              }}
-            >
-              WHY CHOOSE US?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                textAlign: "center",
-                color: "#222",
-                mb: 2,
-                fontWeight: 500,
-                fontSize: 16,
-              }}
-            >
-              At Vanaalayam, You Don't Just Stay — You Experience Nature.
-              <br />
-              Every Moment Here Contributes To The Growth Of Trees And A Greener
-              Tomorrow.
-            </Typography>
+            />
+
             <Box
               sx={{
-                width: "100%",
-                maxWidth: 900,
-                margin: "0 auto",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                py: 4,
-                px: { xs: 2, md: 4 },
-                borderRadius: 3,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                mb: 2,
                 position: "relative",
-                opacity: 0.95,
+                maxWidth: 1100,
+                mx: "auto",
+                textAlign: "center",
+                zIndex: 1,
               }}
             >
+              <Typography
+                sx={{
+                  fontFamily: "Poppins, Arial, sans-serif",
+                  fontWeight: 800,
+                  fontSize: { xs: 20, md: 24 },
+                  color: "#000",
+                  mb: 2,
+                }}
+              >
+                WHY CHOOSE US?
+              </Typography>
+
+              <Typography
+                sx={{
+                  fontFamily: "Poppins, Arial, sans-serif",
+                  fontWeight: 500,
+                  fontSize: { xs: 15, md: 17 },
+                  lineHeight: 1.7,
+                  color: "#111",
+                  mb: 5,
+                }}
+              >
+                At Vanaalayam, You Don’t Just Stay — You Experience Nature.{" "}
+                <br />
+                Every Moment Here Contributes To The Growth Of Trees And A
+                Greener Tomorrow.
+              </Typography>
+
+              {/* Icon list */}
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
+                  flexWrap: "wrap",
                   justifyContent: "center",
-                  alignItems: "center",
-                  gap: { xs: 3, md: 6 },
-                  width: "100%",
-                  mb: 2,
+                  gap: { xs: 4, md: 8 },
                 }}
               >
                 {[
                   { icon: "/icon1.png", label: "GREEN CAMPUS" },
                   { icon: "/icon2.png", label: "PEACEFUL STAY AMIDST NATURE" },
                   { icon: "/icon3.png", label: "NATURE-BLENDED" },
-                ].map((item, idx) => (
-                  <Box
-                    key={item.label}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: 180,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 38,
-                        height: 38,
-                        mb: 1,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <img
-                        src={item.icon}
-                        alt={item.label}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          filter:
-                            "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
-                          objectFit: "contain",
-                        }}
-                      />
-                    </Box>
-                    <Typography
-                      variant="subtitle2"
-                      sx={{
-                        color: "#a07c54",
-                        fontWeight: 700,
-                        fontSize: 15,
-                        textAlign: "center",
-                        mb: 0,
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: { xs: 3, md: 6 },
-                  width: "100%",
-                }}
-              >
-                {[
                   { icon: "/icon4.png", label: "PLASTIC-FREE ENVIRONMENT" },
                   { icon: "/icon5.png", label: "COMMUNITY-BUILT ECO SPACE" },
                 ].map((item, idx) => (
                   <Box
-                    key={item.label}
+                    key={idx}
                     sx={{
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
-                      width: 180,
+                      width: { xs: "40%", sm: "auto" },
+                      textAlign: "center",
                     }}
                   >
                     <Box
+                      component="img"
+                      src={item.icon}
+                      alt={item.label}
                       sx={{
-                        width: 38,
-                        height: 38,
+                        width: 40,
+                        height: 40,
                         mb: 1,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        objectFit: "contain",
+                        filter:
+                          "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
                       }}
-                    >
-                      <img
-                        src={item.icon}
-                        alt={item.label}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          filter:
-                            "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
-                          objectFit: "contain",
-                        }}
-                      />
-                    </Box>
+                    />
                     <Typography
-                      variant="subtitle2"
                       sx={{
-                        color: "#a07c54",
+                        fontFamily: "Poppins, Arial, sans-serif",
                         fontWeight: 700,
-                        fontSize: 15,
-                        textAlign: "center",
-                        mb: 0,
+                        fontSize: { xs: 13, md: 15 },
+                        color: "#333",
                       }}
                     >
                       {item.label}
@@ -1164,245 +816,20 @@ const Vanaalaym = () => {
               </Box>
             </Box>
           </Box>
-          <Box
-            sx={{
-              width: "100%",
-              mt: 6,
-              mb: 0,
-              display: "flex",
-              py: 0,
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                alignItems: "center",
-                background: "#aab28b",
-                borderRadius: 0,
-                maxWidth: 1250,
-                width: "100%",
-                px: { xs: 2, md: 4 },
-                py: { xs: 3, md: 4 },
-                gap: { xs: 3, md: 4 },
-                boxShadow: "none",
-              }}
-            >
-              <Box
-                sx={{
-                  flex: 1,
-                  minWidth: 320,
-                  maxWidth: 420,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <img
-                  src="/about.jpg"
-                  alt="Nature Stay"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: 12,
-                    objectFit: "cover",
-                    maxHeight: 320,
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  flex: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  px: { xs: 0, md: 2 },
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontWeight: 700,
-                    color: "#fff",
-                    mb: 2,
-                    textAlign: "left",
-                    letterSpacing: 1,
-                    fontSize: { xs: 22, md: 28 },
-                    fontFamily: "Montserrat, sans-serif",
-                  }}
-                >
-                  AT VANAAIAYAM
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "#fff",
-                    fontSize: { xs: 15, md: 18 },
-                    lineHeight: 1.8,
-                    mb: 3,
-                    textAlign: "left",
-                    fontFamily: "Montserrat, sans-serif",
-                  }}
-                >
-                  At Vanaalayam, Nature Meets Community And Learning In A
-                  Plastic-Free Environment. Guests Can Adopt A Tree, Contribute
-                  To Saplings, Or Participate In The Adopt A Tree Program, Where
-                  The Foundation Plants, Nurtures, And Monitors The Growth Of A
-                  Tree On Your Behalf. Guests Can Walk Through Our Lush Green
-                  Campus And Enjoy Pure, Nature-Friendly Food, Or Host Small
-                  Gatherings, Workshops, Or Cultural Programs Amid The Natural
-                  Surroundings. Every Visit Supports Conservation And Helps Grow
-                  A Greener, Sustainable Tomorrow.
-                </Typography>
-                <Button
-                  variant="contained"
-                  sx={{
-                    background: "#c2a482",
-                    color: "#7d6a4a",
-                    fontWeight: 700,
-                    boxShadow: "none",
-                    textTransform: "none",
-                    fontSize: 16,
-                    borderRadius: 0,
-                    px: 4,
-                    py: 1,
-                    alignSelf: "flex-start",
-                    fontFamily: "Montserrat, sans-serif",
-                  }}
-                >
-                  KNOW MORE
-                </Button>
-              </Box>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              width: "100%",
-              mt: 0,
-              mb: 6,
-              display: "flex",
-              justifyContent: "center",
-              position: "relative",
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-                maxWidth: 1200,
-                px: { xs: 2, md: 4 },
-                py: { xs: 4, md: 6 },
-                // background: "rgba(255,255,255,0.7)",
-                borderRadius: 0,
-                boxShadow: "none",
-                position: "relative",
-                zIndex: 1,
-              }}
-            >
-              <Typography
-                variant="h5"
-                sx={{
-                  fontWeight: 700,
-                  textAlign: "center",
-                  mb: 4,
-                  color: "#222",
-                  letterSpacing: 1,
-                  fontSize: 22,
-                }}
-              >
-                NEAR BY
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  gap: { xs: 4, md: 6 },
-                }}
-              >
-                {[
-                  { img: "/nearby1.jpg", label: "ISA FOUNDATION" },
-                  { img: "/nearby3.jpg", label: "OOTY" },
-                  { img: "/nearby4.jpg", label: "SIRUVANI WATERFALLS" },
-                  { img: "/nearby2.jpg", label: "AIRPORT" },
-                ].map((item, idx) => (
-                  <Box
-                    key={item.label}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: { xs: "100%", md: 220 },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 220,
-                        height: 150,
-                        mb: 2,
-                        background: "#eee",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                      }}
-                    >
-                      <img
-                        src={item.img}
-                        alt={item.label}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: 0,
-                        }}
-                      />
-                    </Box>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        color: "#222",
-                        fontWeight: 700,
-                        fontSize: 16,
-                        textAlign: "center",
-                        letterSpacing: 1,
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-            {/* Optional faint background overlay for nature effect */}
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 0,
-                backgroundImage: "url(/about.jpg)",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: 0.18,
-                pointerEvents: "none",
-                borderRadius: 0,
-              }}
-            />
-          </Box>
-        </Box>
+        </Container>
+      </Container>
+      <Container maxWidth={false} sx={{ px: 0 }}>
+        {/* ACTIVITIES */}
         <Box
+          id="facilities"
           sx={{
-            width: "100%",
-            mt: 6,
-            mb: 2,
+            width: "1345px",
+            position: "relative",
+            right: "25px",
+            mt: { xs: 6, md: 8 },
+            mb: { xs: 6, md: 8 },
             display: "flex",
             justifyContent: "center",
-            background: "#a07c54",
-            py: { xs: 4, md: 6 },
-            px: { xs: 2, md: 4 },
           }}
         >
           <Box
@@ -1410,11 +837,243 @@ const Vanaalaym = () => {
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
-              maxWidth: 1200,
+              background: "#aab28b",
+              borderRadius: 0,
+              // maxWidth: 1200, // hard center alignment
+              px: { xs: 2, md: 4 },
+              py: { xs: 3, md: 4 },
+              gap: { xs: 3, md: 4 },
+            }}
+          >
+            {/* left image */}
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: { xs: 280, md: 380 },
+                maxWidth: { md: 420 },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src="/about.jpg"
+                alt="Nature Stay"
+                sx={{
+                  width: "100%",
+                  maxHeight: 320,
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  display: "block",
+                }}
+              />
+            </Box>
+
+            {/* right content */}
+            <Box
+              sx={{
+                flex: 2,
+                minWidth: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                px: { xs: 0, md: 2 },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 700,
+                  color: "#fff",
+                  mb: 3,
+                  letterSpacing: 1,
+                  fontSize: { xs: 22, md: 28 },
+                }}
+              >
+                AT VANAALAYAM
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Montserrat, sans-serif",
+                  color: "#fff",
+                  fontSize: { xs: 15, md: 18 },
+                  lineHeight: 1.8,
+                  mb: 3,
+                  textAlign: "left",
+                }}
+              >
+                At Vanaalayam, Nature Meets Community And Learning In A
+                Plastic-Free Environment. Guests Can Adopt A Tree, Contribute To
+                Saplings, Or Participate In The Adopt A Tree Program, Where The
+                Foundation Plants, Nurtures, And Monitors The Growth Of A Tree
+                On Your Behalf. Guests Can Walk Through Our Lush Green Campus
+                And Enjoy Pure, Nature-Friendly Food, Or Host Small Gatherings,
+                Workshops, Or Cultural Programs Amid The Natural Surroundings.
+                Every Visit Supports Conservation And Helps Grow A Greener,
+                Sustainable Tomorrow.
+              </Typography>
+              <Button
+                variant="contained"
+                sx={{
+                  background: "#c2a482",
+                  color: "#7d6a4a",
+                  fontWeight: 700,
+                  textTransform: "none",
+                  fontSize: 16,
+                  borderRadius: 0,
+                  px: 4,
+                  py: 1,
+                  boxShadow: "none",
+                  "&:hover": { background: "#b79773", boxShadow: "none" },
+                }}
+              >
+                KNOW MORE
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* NEAR BY */}
+        <Box
+          sx={{
+            width: "1345px",
+            position: "relative",
+            right: "25px",
+            mb: { xs: 6, md: 8 },
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
               width: "100%",
+              maxWidth: 1200,
+              px: { xs: 2, md: 4 },
+              py: { xs: 4, md: 6 },
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                fontWeight: 700,
+                textAlign: "center",
+                mb: 4,
+                color: "#222",
+                letterSpacing: 1,
+                fontSize: 22,
+              }}
+            >
+              NEAR BY
+            </Typography>
+
+            {/* equal-width grid for perfect alignment */}
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  sm: "repeat(2, 1fr)",
+                  md: "repeat(4, 1fr)",
+                },
+                gap: { xs: 4, md: 6 },
+              }}
+            >
+              {[
+                { img: "/nearby1.jpg", label: "ISA FOUNDATION" },
+                { img: "/nearby3.jpg", label: "OOTY" },
+                { img: "/nearby4.jpg", label: "SIRUVANI WATERFALLS" },
+                { img: "/nearby2.jpg", label: "AIRPORT" },
+              ].map((item) => (
+                <Box
+                  key={item.label}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "100%",
+                      aspectRatio: "22 / 15", // same as 220x150 proportion, responsive
+                      mb: 2,
+                      background: "#eee",
+                      borderRadius: 1,
+                      overflow: "hidden",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={item.img}
+                      alt={item.label}
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    sx={{
+                      color: "#222",
+                      fontWeight: 700,
+                      fontSize: 16,
+                      textAlign: "center",
+                      letterSpacing: 1,
+                    }}
+                  >
+                    {item.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+
+          {/* faint background overlay */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              backgroundImage: "url(/about.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.18,
+              pointerEvents: "none",
+            }}
+          />
+        </Box>
+
+        {/* VISIONARY + FOOTER INFO */}
+        <Box
+          sx={{
+            width: "1280px",
+            position: "relative",
+            right: "25px",
+            marginLeft: 0,
+            background: "#a07c54",
+            py: { xs: 4, md: 6 },
+            px: { xs: 2, md: 4 },
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              width: "100%",
+              maxWidth: 1200,
               gap: { xs: 4, md: 6 },
             }}
           >
+            {/* visionary image */}
             <Box
               sx={{
                 flex: 1,
@@ -1425,51 +1084,46 @@ const Vanaalaym = () => {
                 alignItems: "center",
               }}
             >
-              <img
+              <Box
+                component="img"
                 src="/plant.jpg"
                 alt="Visionary Behind Vanaalayam"
-                style={{
+                sx={{
                   width: "100%",
-                  height: "auto",
-                  borderRadius: 0,
-                  objectFit: "cover",
                   maxHeight: 320,
+                  objectFit: "cover",
+                  display: "block",
                 }}
               />
             </Box>
+
+            {/* visionary text */}
             <Box
               sx={{
                 flex: 2,
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
                 alignItems: "flex-start",
-                px: { xs: 0, md: 2 },
               }}
             >
               <Typography
-                variant="h5"
                 sx={{
+                  fontFamily: "Montserrat, sans-serif",
                   fontWeight: 700,
                   color: "#fff",
                   mb: 2,
-                  textAlign: "left",
                   letterSpacing: 1,
                   fontSize: { xs: 20, md: 26 },
-                  fontFamily: "Montserrat, sans-serif",
                 }}
               >
                 VISIONARY BEHIND VANAALAYAM
               </Typography>
               <Typography
-                variant="body1"
                 sx={{
+                  fontFamily: "Montserrat, sans-serif",
                   color: "#fff",
                   fontSize: { xs: 15, md: 18 },
                   lineHeight: 1.8,
-                  mb: 0,
-                  textAlign: "left",
-                  fontFamily: "Montserrat, sans-serif",
                 }}
               >
                 Vanaalayam, A Part Of The Vanam India Foundation, Was Founded By
@@ -1486,9 +1140,14 @@ const Vanaalaym = () => {
             </Box>
           </Box>
         </Box>
+
+        {/* FOOTER CONTACT / FACILITIES / LOCATION with ENQUIRY button */}
         <Box
           sx={{
-            width: "100%",
+            marginTop: "120px",
+            width: "1280px",
+            position: "relative",
+            right: "25px",
             background: "#a07c54",
             py: { xs: 6, md: 8 },
             px: { xs: 2, md: 4 },
@@ -1497,71 +1156,60 @@ const Vanaalaym = () => {
             justifyContent: "center",
           }}
         >
-          {/* ENQUIRY NOW Button - sticky right with transition */}
+          {/* vertical enquiry button (desktop only) */}
           <Box
             sx={{
               position: "absolute",
               top: { xs: 32, md: 40 },
               right: 0,
-              bottom: 20,
               zIndex: 2,
-              transition: "right 0.3s",
               display: { xs: "none", md: "block" },
             }}
           >
             <Button
               variant="contained"
               sx={{
+                bottom: 97,
+                marginRight: "50px",
                 background: "#d2b8a3",
+                rotate: "180deg",
                 color: "#7d6a4a",
                 fontWeight: 700,
                 borderRadius: 0,
                 boxShadow: "none",
                 textTransform: "none",
                 fontSize: 18,
-                px: 2,
+                px: 1,
                 py: 1,
                 writingMode: "vertical-rl",
                 textOrientation: "mixed",
                 letterSpacing: 2,
                 minHeight: 120,
-                minWidth: 48,
-                transition: "background 0.3s",
-                "&:hover": {
-                  background: "#c2a482",
-                  color: "#7d6a4a",
-                },
+                minWidth: "0 !important",
+                maxWidth: 45,
+                "&:hover": { background: "#c2a482", color: "#7d6a4a" },
               }}
             >
               ENQUIRY NOW
             </Button>
           </Box>
+
           <Box
             sx={{
               width: "100%",
-              maxWidth: 1200,
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              gap: { xs: 6, md: 0 },
-              justifyContent: "space-between",
+              maxWidth: 1200, // hard center alignment
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+              gap: { xs: 6, md: 4 },
               alignItems: "flex-start",
             }}
           >
             {/* Contact */}
-            <Box
-              sx={{
-                flex: 1,
-                minWidth: 260,
-                px: { xs: 0, md: 2 },
-                mb: { xs: 4, md: 0 },
-              }}
-            >
+            <Box sx={{ px: { xs: 0, md: 2 } }} id="contactus">
               <Typography
-                variant="h6"
                 sx={{
                   color: "#fff",
                   fontWeight: 700,
-                  mb: 1,
                   fontSize: 22,
                   fontFamily: "Montserrat, sans-serif",
                   borderBottom: "2px solid #fff",
@@ -1572,7 +1220,6 @@ const Vanaalaym = () => {
                 CONTACT
               </Typography>
               <Typography
-                variant="body2"
                 sx={{
                   color: "#fff",
                   fontSize: 16,
@@ -1582,10 +1229,10 @@ const Vanaalaym = () => {
                   whiteSpace: "pre-line",
                 }}
               >
-                ADDRESS: VANAALAYAM,\nTRICHY RD, PALLADAM,\nTAMIL NADU 641662
+                ADDRESS: VANAALAYAM,{`\n`}TRICHY RD, PALLADAM,{`\n`}TAMIL NADU
+                641662
               </Typography>
               <Typography
-                variant="body2"
                 sx={{
                   color: "#fff",
                   fontSize: 16,
@@ -1598,7 +1245,6 @@ const Vanaalaym = () => {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9791396444
               </Typography>
               <Typography
-                variant="body2"
                 sx={{
                   color: "#fff",
                   fontSize: 16,
@@ -1606,25 +1252,18 @@ const Vanaalaym = () => {
                   fontFamily: "Montserrat, sans-serif",
                 }}
               >
-                MAIL ID :<br />
+                MAIL ID :
+                <br />
                 frontoffice@vanaalayamretreat.com
               </Typography>
             </Box>
+
             {/* Facilities */}
-            <Box
-              sx={{
-                flex: 1,
-                minWidth: 220,
-                px: { xs: 0, md: 2 },
-                mb: { xs: 4, md: 0 },
-              }}
-            >
+            <Box sx={{ px: { xs: 0, md: 2 } }}>
               <Typography
-                variant="h6"
                 sx={{
                   color: "#fff",
                   fontWeight: 700,
-                  mb: 1,
                   fontSize: 22,
                   fontFamily: "Montserrat, sans-serif",
                   borderBottom: "2px solid #fff",
@@ -1634,69 +1273,32 @@ const Vanaalaym = () => {
               >
                 FACILITIES
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#fff",
-                  fontSize: 16,
-                  mt: 2,
-                  mb: 1,
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-              >
-                ROOM SERVICE
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#fff",
-                  fontSize: 16,
-                  mb: 1,
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-              >
-                FREE WI-FI
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#fff",
-                  fontSize: 16,
-                  mb: 1,
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-              >
-                FREE PARKING
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#fff",
-                  fontSize: 16,
-                  mb: 1,
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-              >
-                UNIQUE GARDENS
-              </Typography>
+              {[
+                "ROOM SERVICE",
+                "FREE WI-FI",
+                "FREE PARKING",
+                "UNIQUE GARDENS",
+              ].map((t) => (
+                <Typography
+                  key={t}
+                  sx={{
+                    color: "#fff",
+                    fontSize: 16,
+                    mt: 2,
+                    fontFamily: "Montserrat, sans-serif",
+                  }}
+                >
+                  {t}
+                </Typography>
+              ))}
             </Box>
+
             {/* Location */}
-            <Box
-              sx={{
-                flex: 1,
-                minWidth: 260,
-                px: { xs: 0, md: 2 },
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
+            <Box sx={{ px: { xs: 0, md: 2 } }}>
               <Typography
-                variant="h6"
                 sx={{
                   color: "#fff",
                   fontWeight: 700,
-                  mb: 1,
                   fontSize: 22,
                   fontFamily: "Montserrat, sans-serif",
                   borderBottom: "2px solid #fff",
@@ -1710,20 +1312,27 @@ const Vanaalaym = () => {
                 sx={{
                   mt: 2,
                   width: 260,
-                  height: 180,
+                  height: 180, // keep same card size as your design
                   background: "#fff",
                   borderRadius: 2,
                   overflow: "hidden",
                   boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                 }}
               >
-                <img
-                  src="/map.png"
-                  alt="Vanaalayam Location"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                {/* Responsive iframe map */}
+                <Box
+                  component="iframe"
+                  // Option A: simple embed via query (reliable)
+                  src="https://www.google.com/maps?q=Vanaalayam%20Retreat%2C%20Trichy%20Rd%2C%20Palladam%20641662&output=embed"
+                  // Option B (optional): try direct short link (may be blocked in some browsers)
+                  // src="https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2F8kmQLJHKAYuRFcZF6&output=embed"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Vanaalayam Location"
                 />
               </Box>
             </Box>
