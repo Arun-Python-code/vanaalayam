@@ -10,6 +10,7 @@ import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
+import { CheckCircleOutlineRounded } from "@mui/icons-material";
 
 const menuItems = [
   "HOME",
@@ -76,6 +77,7 @@ const banners = [
 
 const Vanaalaym = () => {
   const [current, setCurrent] = useState(0);
+  // Removed unused currentImageIndex
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -96,10 +98,17 @@ const Vanaalaym = () => {
     }
   };
 
+  // Removed unused handleSwipe function
+
+  // const swipeHandlers = useSwipeable({
+  //   onSwipedLeft: () => handleSwipe("LEFT"),
+  //   onSwipedRight: () => handleSwipe("RIGHT"),
+  // });
+
   return (
-    <Box>
+    <Box style={{ overflowY: "hidden" }}>
       <AppBar
-        position="static"
+        position="fixed" // Changed from "static" to "sticky"
         color="inherit"
         elevation={1}
         sx={{ boxShadow: "0 2px 8px rgba(0,0,0,0.07)" }}
@@ -122,7 +131,7 @@ const Vanaalaym = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              padding: "40px 60px 40px 2px",
+              padding: "35px 60px 40px 2px",
             }}
           >
             {menuItems.map((item) => (
@@ -149,8 +158,7 @@ const Vanaalaym = () => {
         sx={{
           position: "relative",
           width: "100%",
-          minHeight: 780,
-          marginLeft: "0%",
+          minHeight: 800,
           backgroundImage: `url(${banner.image})`,
           backgroundSize: "cover",
           backgroundPosition: "left",
@@ -232,7 +240,7 @@ const Vanaalaym = () => {
             width: "90%",
             py: { xs: 8, md: 8 },
             px: { xs: 2, md: 6 },
-            background: "rgba(255,255,255,0.95)", // bright white overlay
+            background: "rgba(255,255,255,0.95)",
           }}
         >
           {/* Section Title */}
@@ -266,28 +274,23 @@ const Vanaalaym = () => {
             {[
               {
                 img: "/bed1.jpg",
-                title: "SINGLE BED ROOMS",
+                title: "Deluxe Room - 180sq.ft",
                 desc: "The 03 Single Bed Rooms At Our Resort",
               },
               {
                 img: "/bed4.jpg",
-                title: "SUITE ROOMS",
+                title: "Family Room - 240sq.ft ",
                 desc: "The 02 Suite Rooms At Our Resort",
               },
               {
                 img: "/bed2.jpg",
-                title: "QUEEN SIZE ROOMS",
+                title: "Suite Room - 400sq.ft",
                 desc: "The 16 Queen Size Rooms At Our Resort",
               },
               {
                 img: "/bed5.jpg",
-                title: "DORMITORY ROOMS",
+                title: "Dormitory Room - 500sq.ft",
                 desc: "The 05 Dormitory Rooms At Our Resort",
-              },
-              {
-                img: "/bed3.jpg",
-                title: "KING SIZE ROOMS",
-                desc: "The 16 King Size Rooms At Our Resort",
               },
             ].map((item, idx) => (
               <Box
@@ -354,8 +357,8 @@ const Vanaalaym = () => {
                       backgroundColor: "#efe7d9ff",
                       "&:hover": {
                         backgroundColor: "#efe7d9ff", // faint brown shade
-                        borderColor: "#efe7d9ff",
-                        color: "#efe7d9ff",
+                        borderColor: "#000",
+                        color: "#000",
                       },
                     }}
                   >
@@ -364,6 +367,73 @@ const Vanaalaym = () => {
                 </Box>
               </Box>
             ))}
+          </Box>
+
+          {/* New Amenities Section */}
+          <Box
+            sx={{
+              mt: { xs: 6, md: 8 },
+              px: { xs: 2, md: 6 },
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontFamily: "Poppins, Arial, sans-serif",
+                fontWeight: 700,
+                fontSize: { xs: 24, md: 28 },
+                textAlign: "center",
+                mb: { xs: 4, md: 6 },
+                color: "#000",
+              }}
+            >
+              Amenities
+            </Typography>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", md: "repeat(4, 1fr)" },
+                gap: { xs: 2, md: 2 },
+                textAlign: "center",
+              }}
+            >
+              {[
+                "Complimentary Wifi Access",
+                "Air-conditioning",
+                "42-inch Television",
+                "Complimentary Bottled Water",
+                "Tea & Coffee Maker",
+                "Minibar",
+                "Room Service",
+                "In-room Safe",
+                "Wardrobe",
+                "Laundry Service (Chargeable)",
+                "Kids Outdoor Play Area",
+              ].map((amenity, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    fontFamily: "Poppins, Arial, sans-serif",
+                    fontWeight: 400,
+                    fontSize: { xs: 14, md: 16 },
+                    textAlign: "left",
+                    color: "#333",
+                    whiteSpace: "nowrap", // Prevent line breaks
+                  }}
+                >
+                  <CheckCircleOutlineRounded
+                    style={{
+                      height: "30px",
+                      width: "30px",
+                      position: "relative",
+                      top: "10px",
+                      color: "green",
+                    }}
+                  />{" "}
+                  &nbsp;{amenity}
+                </Typography>
+              ))}
+            </Box>
           </Box>
         </Box>
       </Container>
@@ -522,7 +592,7 @@ const Vanaalaym = () => {
       <Container id="gallery" maxWidth={false} sx={{ px: 0 }}>
         <Container maxWidth={false} sx={{ px: 0 }}>
           {/* GALLERY */}
-          <Box sx={{ width: "100%", mt: 6, mb: 4 }}>
+          <Box sx={{ width: "100%", mt: 6, mb: 0 }}>
             <Typography
               sx={{
                 fontFamily: "Poppins, Arial, sans-serif",
@@ -700,123 +770,234 @@ const Vanaalaym = () => {
               </Box>
             </Box>
           </Box>
+        </Container>
+      </Container>
 
-          {/* WHY CHOOSE US */}
-          <Box
-            id="whychooseus"
+      {/* WHY CHOOSE US */}
+      <Box
+        id="whychooseus"
+        sx={{
+          width: "1380px",
+          position: "relative",
+          right: "55px",
+          backgroundImage: "url(/about.jpg)", // faint bg like screenshot
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          py: { xs: 6, md: 8 },
+          px: 2,
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(255,255,255,0.85)", // white overlay
+            zIndex: 0,
+          }}
+        />
+
+        <Box
+          sx={{
+            position: "relative",
+            maxWidth: 1100,
+            mx: "auto",
+            textAlign: "center",
+            zIndex: 1,
+          }}
+        >
+          <Typography
             sx={{
-              width: "1320px",
-              position: "relative",
-              right: "55px",
-              backgroundImage: "url(/about.jpg)", // faint bg like screenshot
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              py: { xs: 6, md: 8 },
-              px: 2,
+              fontFamily: "Poppins, Arial, sans-serif",
+              fontWeight: 800,
+              fontSize: { xs: 20, md: 24 },
+              color: "#000",
+              mb: 2,
             }}
           >
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                backgroundColor: "rgba(255,255,255,0.85)", // white overlay
-                zIndex: 0,
-              }}
-            />
+            WHY CHOOSE US?
+          </Typography>
 
+          <Typography
+            sx={{
+              fontFamily: "Poppins, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: { xs: 15, md: 17 },
+              lineHeight: 1.7,
+              color: "#111",
+              mb: 5,
+            }}
+          >
+            At Vanaalayam, You Don’t Just Stay — You Experience Nature. <br />
+            Every Moment Here Contributes To The Growth Of Trees And A Greener
+            Tomorrow.
+          </Typography>
+
+          {/* Icon list */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: { xs: 4, md: 8 },
+            }}
+          >
+            {[
+              { icon: "/icon1.png", label: "GREEN CAMPUS" },
+              { icon: "/icon2.png", label: "PEACEFUL STAY AMIDST NATURE" },
+              { icon: "/icon3.png", label: "NATURE-BLENDED" },
+              { icon: "/icon4.png", label: "PLASTIC-FREE ENVIRONMENT" },
+              { icon: "/icon5.png", label: "COMMUNITY-BUILT ECO SPACE" },
+            ].map((item, idx) => (
+              <Box
+                key={idx}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  width: { xs: "40%", sm: "auto" },
+                  textAlign: "center",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={item.icon}
+                  alt={item.label}
+                  sx={{
+                    height: 40,
+                    mb: 1,
+                    objectFit: "contain",
+                    filter:
+                      "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
+                  }}
+                />
+                <Typography
+                  sx={{
+                    fontFamily: "Poppins, Arial, sans-serif",
+                    fontWeight: 700,
+                    fontSize: { xs: 13, md: 15 },
+                    color: "#333",
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+      {/* TESTIMONIALS SECTION - NEWLY ADDED */}
+      <Box
+        sx={{
+          width: "1280px",
+          position: "relative",
+          right: "25px",
+          marginLeft: 0,
+          backgroundImage: "url(/background.jpg)", // Replace with your background image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          py: { xs: 6, md: 8 },
+          px: { xs: 2, md: 4 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          sx={{
+            fontFamily: "Poppins, Arial, sans-serif",
+            fontWeight: 700,
+            fontSize: { xs: 20, md: 26 },
+            color: "#000",
+            mb: 4,
+            textAlign: "center",
+          }}
+        >
+          VALUABLE TESTIMONIALS
+        </Typography>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "repeat(4, 1fr)" },
+            gap: { xs: 4, md: 4 },
+            width: "100%",
+            maxWidth: 1200,
+          }}
+        >
+          {[...Array(4)].map((_, idx) => (
             <Box
+              key={idx}
               sx={{
-                position: "relative",
-                maxWidth: 1100,
-                mx: "auto",
-                textAlign: "center",
-                zIndex: 1,
+                background: "#8a8a6a",
+                borderRadius: 2,
+                p: 3,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: 360, // Adjusted height to match the image
+                marginTop: idx === 1 || idx === 2 ? "50px" : "0",
               }}
             >
               <Typography
                 sx={{
                   fontFamily: "Poppins, Arial, sans-serif",
-                  fontWeight: 800,
-                  fontSize: { xs: 20, md: 24 },
-                  color: "#000",
+                  fontWeight: 400,
+                  fontSize: { xs: 14, md: 18 },
+                  color: "#fff",
                   mb: 2,
+                  lineHeight: 1.6,
                 }}
               >
-                WHY CHOOSE US?
+                Deep Nature Resort Was An Excellent Choice For Our Team Building
+                Activity. It Was A Fantastic Location. Easy...
               </Typography>
-
-              <Typography
-                sx={{
-                  fontFamily: "Poppins, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: { xs: 15, md: 17 },
-                  lineHeight: 1.7,
-                  color: "#111",
-                  mb: 5,
-                }}
-              >
-                At Vanaalayam, You Don’t Just Stay — You Experience Nature.{" "}
-                <br />
-                Every Moment Here Contributes To The Growth Of Trees And A
-                Greener Tomorrow.
-              </Typography>
-
-              {/* Icon list */}
               <Box
                 sx={{
                   display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  gap: { xs: 4, md: 8 },
+                  alignItems: "center",
+                  mt: "auto",
                 }}
               >
-                {[
-                  { icon: "/icon1.png", label: "GREEN CAMPUS" },
-                  { icon: "/icon2.png", label: "PEACEFUL STAY AMIDST NATURE" },
-                  { icon: "/icon3.png", label: "NATURE-BLENDED" },
-                  { icon: "/icon4.png", label: "PLASTIC-FREE ENVIRONMENT" },
-                  { icon: "/icon5.png", label: "COMMUNITY-BUILT ECO SPACE" },
-                ].map((item, idx) => (
-                  <Box
-                    key={idx}
+                <Box
+                  component="img"
+                  src="/dummy-profile.jpg" // Replace with the actual dummy image path
+                  alt="Guest"
+                  sx={{
+                    width: 50, // Adjust size as needed
+                    height: 50,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    mr: 2,
+                    border: "1px solid #fff", // Add border for styling
+                  }}
+                />
+                <Box>
+                  <Typography
                     sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: { xs: "40%", sm: "auto" },
-                      textAlign: "center",
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 600,
+                      fontSize: 17,
+                      color: "#fff",
                     }}
                   >
-                    <Box
-                      component="img"
-                      src={item.icon}
-                      alt={item.label}
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        mb: 1,
-                        objectFit: "contain",
-                        filter:
-                          "invert(32%) sepia(24%) saturate(1100%) hue-rotate(10deg) brightness(90%)",
-                      }}
-                    />
-                    <Typography
-                      sx={{
-                        fontFamily: "Poppins, Arial, sans-serif",
-                        fontWeight: 700,
-                        fontSize: { xs: 13, md: 15 },
-                        color: "#333",
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  </Box>
-                ))}
+                    Savita Khandekar
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Poppins, Arial, sans-serif",
+                      fontWeight: 400,
+                      fontSize: 16,
+                      color: "#fff",
+                    }}
+                  >
+                    Guest
+                  </Typography>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </Container>
-      </Container>
+          ))}
+        </Box>
+      </Box>
       <Container maxWidth={false} sx={{ px: 0 }}>
         {/* ACTIVITIES */}
         <Box
@@ -825,8 +1006,8 @@ const Vanaalaym = () => {
             width: "1345px",
             position: "relative",
             right: "25px",
-            mt: { xs: 6, md: 8 },
-            mb: { xs: 6, md: 8 },
+            mt: { xs: 6, md: 0 },
+            mb: { xs: 6, md: 0 },
             display: "flex",
             justifyContent: "center",
           }}
@@ -845,7 +1026,7 @@ const Vanaalaym = () => {
             }}
           >
             {/* left image */}
-            <Box
+            {/* <Box
               sx={{
                 flex: 1,
                 minWidth: { xs: 280, md: 380 },
@@ -867,7 +1048,7 @@ const Vanaalaym = () => {
                   display: "block",
                 }}
               />
-            </Box>
+            </Box> */}
 
             {/* right content */}
             <Box
@@ -875,8 +1056,9 @@ const Vanaalaym = () => {
                 flex: 2,
                 minWidth: 0,
                 display: "flex",
+                justifyContent: "center",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: "center",
                 px: { xs: 0, md: 2 },
               }}
             >
@@ -897,7 +1079,7 @@ const Vanaalaym = () => {
                   fontFamily: "Montserrat, sans-serif",
                   color: "#fff",
                   fontSize: { xs: 15, md: 18 },
-                  lineHeight: 1.8,
+                  lineHeight: 1.7,
                   mb: 3,
                   textAlign: "left",
                 }}
@@ -932,6 +1114,118 @@ const Vanaalaym = () => {
             </Box>
           </Box>
         </Box>
+        <Box
+          sx={{
+            width: "1345px",
+            position: "relative",
+            background: "#fff",
+            right: "25px",
+            mb: { xs: 6, md: 0 },
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: 1200,
+              px: { xs: 2, md: 4 },
+              py: { xs: 4, md: 6 },
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                fontWeight: 700,
+                textAlign: "center",
+                mb: 4,
+                color: "#222",
+                letterSpacing: 1,
+                fontSize: 22,
+              }}
+            >
+              INSIDE
+            </Typography>
+
+            {/* equal-width grid for perfect alignment */}
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  sm: "repeat(2, 1fr)",
+                  md: "repeat(3, 0.5fr)",
+                },
+                gap: { xs: 4, md: 6 },
+              }}
+            >
+              {[
+                { img: "/inside1.jpg", label: "WALKTHROUGH PARK" },
+                { img: "/inside2.jpg", label: "CHILDRENS PLAY AREA" },
+                { img: "/inside3.jpg", label: "NAKSHATRA VANAM" },
+              ].map((item) => (
+                <Box
+                  key={item.label}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "80%",
+                      aspectRatio: "22 / 15", // same as 220x150 proportion, responsive
+                      mb: 2,
+                      background: "#eee",
+                      borderRadius: 1,
+                      overflow: "hidden",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={item.img}
+                      alt={item.label}
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    sx={{
+                      color: "#222",
+                      fontWeight: 700,
+                      fontSize: 16,
+                      textAlign: "center",
+                      letterSpacing: 1,
+                    }}
+                  >
+                    {item.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+
+          {/* faint background overlay */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.18,
+              pointerEvents: "none",
+            }}
+          />
+        </Box>
 
         {/* NEAR BY */}
         <Box
@@ -939,7 +1233,7 @@ const Vanaalaym = () => {
             width: "1345px",
             position: "relative",
             right: "25px",
-            mb: { xs: 6, md: 8 },
+            mb: { xs: 6, md: 0 },
             display: "flex",
             justifyContent: "center",
           }}
@@ -1142,7 +1436,7 @@ const Vanaalaym = () => {
         {/* FOOTER CONTACT / FACILITIES / LOCATION with ENQUIRY button */}
         <Box
           sx={{
-            marginTop: "120px",
+            marginTop: "100px",
             width: "1280px",
             position: "relative",
             right: "25px",
@@ -1187,7 +1481,7 @@ const Vanaalaym = () => {
                 "&:hover": { background: "#c2a482", color: "#7d6a4a" },
               }}
             >
-              ENQUIRY NOW
+              BOOK NOW
             </Button>
           </Box>
 
