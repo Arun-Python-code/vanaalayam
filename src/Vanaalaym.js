@@ -23,7 +23,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
+import "./App.css";
 
 const menuItems = [
   "HOME",
@@ -526,7 +527,6 @@ const Vanaalaym = () => {
           sx={{
             width: "1345px",
             position: "relative",
-            right: "25px",
             minHeight: 420,
             display: "flex",
             alignItems: "center",
@@ -647,93 +647,86 @@ const Vanaalaym = () => {
         </Box>
       </Container>
 
+      {/* GALLERY */}
       <Container id="gallery" maxWidth={false} sx={{ px: 0 }}>
-        <Container id="gallery" maxWidth={false} sx={{ px: 0 }}>
-          {/* GALLERY */}
-
-          <Box sx={{ width: "100%", mt: 6, mb: 0 }}>
-            <Typography
-              sx={{
-                fontFamily: "Poppins, Arial, sans-serif",
-                fontWeight: 800,
-                fontSize: { xs: 22, md: 28 },
-                textAlign: "center",
-                mb: 4,
-                color: "#111",
-                letterSpacing: 1,
+        <Box sx={{ width: "100%", mt: 6, mb: 0 }}>
+          <Typography
+            sx={{
+              fontFamily: "Poppins, Arial, sans-serif",
+              fontWeight: 800,
+              fontSize: { xs: 22, md: 28 },
+              textAlign: "center",
+              mb: 4,
+              color: "#111",
+              letterSpacing: 1,
+            }}
+          >
+            GALLERY
+          </Typography>
+          <Box
+            sx={{
+              position: "relative",
+              borderRadius: "10px",
+              maxWidth: 900,
+              margin: "0 auto",
+              px: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "baseline",
+              backgroundColor: "#a07c54",
+            }}
+          >
+            {/* Swiper Gallery with Autoplay */}
+            <Swiper
+              slidesPerView={3}
+              centeredSlides={false}
+              spaceBetween={30}
+              pagination={{ clickable: true }}
+              navigation={true}
+              autoplay={{
+                delay: 3000, // Auto-slide every 3 seconds
+                disableOnInteraction: false, // Keep autoplay even after user interaction
               }}
-            >
-              GALLERY
-            </Typography>
-            <Box
-              sx={{
-                position: "relative",
-                borderRadius: "10px",
+              modules={[Navigation, Autoplay]} // Add Autoplay module
+              style={{
+                width: "100%",
                 maxWidth: 900,
-                margin: "0 auto",
-                px: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "baseline",
-                backgroundColor: "#a07c54",
+                minHeight: 220,
+                paddingLeft: "43px",
+                boxSizing: "border-box",
               }}
             >
-              {/* Swiper Gallery */}
-              <Swiper
-                slidesPerView={3}
-                centeredSlides={false}
-                spaceBetween={30}
-                pagination={false}
-                navigation={true}
-                modules={[Navigation]}
-                style={{
-                  width: "100%",
-                  maxWidth: 900,
-                  minHeight: 220,
-                  paddingLeft: "43px", // Add space for left arrow
-                  // Add space for right arrow
-                  boxSizing: "border-box",
-                }}
-              >
-                {[
-                  "/bed1.jpg",
-                  "/bed2.jpg",
-                  "/bed3.jpg",
-                  "/bed4.jpg",
-                  "/bed5.jpg",
-                ].map((img, idx) => (
-                  <SwiperSlide key={img}>
-                    <Box
-                      sx={{
-                        width: { xs: 120, md: 220 },
-                        height: { xs: 90, md: 160 },
-                        overflow: "hidden",
-                        background: "#fff",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: 2,
-                        marginTop: "30px",
+              {galleryImages.map((img, idx) => (
+                <SwiperSlide key={img}>
+                  <Box
+                    sx={{
+                      width: { xs: 120, md: 220 },
+                      height: { xs: 90, md: 160 },
+                      overflow: "hidden",
+                      background: "#fff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: 2,
+                      marginTop: "30px",
+                    }}
+                  >
+                    <img
+                      src={img}
+                      alt={`Gallery ${idx + 1}`}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        borderRadius: "8px",
                       }}
-                    >
-                      <img
-                        src={img}
-                        alt={`Gallery ${idx + 1}`}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                      />
-                    </Box>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              {/* Swiper navigation arrows are handled by Swiper, no extra markup needed */}
-            </Box>
+                    />
+                  </Box>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </Box>
-        </Container>
+        </Box>
       </Container>
 
       {/* WHY CHOOSE US */}
@@ -848,7 +841,7 @@ const Vanaalaym = () => {
           </Box>
         </Box>
       </Box>
-      {/* TESTIMONIALS SECTION - NEWLY ADDED */}
+      {/* TESTIMONIALS SECTION - UPDATED */}
       <Box
         sx={{
           width: "1280px",
@@ -886,7 +879,36 @@ const Vanaalaym = () => {
             maxWidth: 1200,
           }}
         >
-          {[...Array(4)].map((_, idx) => (
+          {[
+            {
+              content:
+                "Nice Property with great serenity. The staff are friendly and helpful. Property is well maintained and rooms are neat and clean...",
+              name: "Ravi Kumar",
+              role: "Guest",
+              photo: "/guest1.jpg",
+            },
+            {
+              content:
+                "In Vaanalayam our stay refreshed and energised us to face things that were waiting for us at our home and workplace. We had a memorable experience!",
+              name: "Anjali Sharma",
+              role: "Guest",
+              photo: "/guest2.jpg",
+            },
+            {
+              content:
+                "We stayed at this property for 2 nights and enjoyed the stay very much.  The staff went out of their way to make us comfortable . They were so flexible and made us feel at home at their place ..",
+              name: "Manoj Verma",
+              role: "Guest",
+              photo: "/guest3.jpg",
+            },
+            {
+              content:
+                "A perfect place to unwind! Excellent Location and surroundings. Highly recommend for nature lovers and families looking for a peaceful stay!",
+              name: "Priya Singh",
+              role: "Guest",
+              photo: "/guest4.jpg",
+            },
+          ].map((testimonial, idx) => (
             <Box
               key={idx}
               sx={{
@@ -911,8 +933,7 @@ const Vanaalaym = () => {
                   lineHeight: 1.6,
                 }}
               >
-                Deep Nature Resort Was An Excellent Choice For Our Team Building
-                Activity. It Was A Fantastic Location. Easy...
+                {testimonial.content}
               </Typography>
               <Box
                 sx={{
@@ -923,8 +944,8 @@ const Vanaalaym = () => {
               >
                 <Box
                   component="img"
-                  src="/dummy-profile.jpg" // Replace with the actual dummy image path
-                  alt="Guest"
+                  src={testimonial.photo} // Replace with the actual guest photo path
+                  alt={testimonial.name}
                   sx={{
                     width: 50, // Adjust size as needed
                     height: 50,
@@ -943,7 +964,7 @@ const Vanaalaym = () => {
                       color: "#fff",
                     }}
                   >
-                    Savita Khandekar
+                    {testimonial.name}
                   </Typography>
                   <Typography
                     sx={{
@@ -953,7 +974,7 @@ const Vanaalaym = () => {
                       color: "#fff",
                     }}
                   >
-                    Guest
+                    {testimonial.role}
                   </Typography>
                 </Box>
               </Box>
@@ -968,7 +989,6 @@ const Vanaalaym = () => {
           sx={{
             width: "1345px",
             position: "relative",
-            right: "25px",
             mt: { xs: 6, md: 0 },
             mb: { xs: 6, md: 0 },
             display: "flex",
@@ -1195,7 +1215,6 @@ const Vanaalaym = () => {
           sx={{
             width: "1345px",
             position: "relative",
-            right: "25px",
             mb: { xs: 6, md: 0 },
             display: "flex",
             justifyContent: "center",
@@ -1237,7 +1256,7 @@ const Vanaalaym = () => {
               }}
             >
               {[
-                { img: "/nearby1.jpg", label: "ISA FOUNDATION" },
+                { img: "/nearby1.jpg", label: "ISHA FOUNDATION" },
                 { img: "/nearby3.jpg", label: "OOTY" },
                 { img: "/nearby4.jpg", label: "SIRUVANI WATERFALLS" },
                 { img: "/nearby2.jpg", label: "AIRPORT" },
@@ -1304,95 +1323,119 @@ const Vanaalaym = () => {
           />
         </Box>
 
-        {/* VISIONARY + FOOTER INFO */}
+        {/* VISIONARY BEHIND VANAALAYAM */}
+        {/* VISIONARY BEHIND VANAALAYAM */}
         <Box
           sx={{
-            width: "1280px",
-            position: "relative",
-            right: "25px",
-            marginLeft: 0,
+            width: "1345px",
+            mx: "auto",
             background: "#a07c54",
             py: { xs: 4, md: 6 },
             px: { xs: 2, md: 4 },
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
+          <Typography
+            sx={{
+              fontFamily: "Montserrat, sans-serif",
+              fontWeight: 700,
+              color: "#fff",
+              mb: 4,
+              letterSpacing: 1,
+              fontSize: { xs: 20, md: 26 },
+              textAlign: "center",
+            }}
+          >
+            VISIONARY BEHIND VANAALAYAM
+          </Typography>
+
           <Box
             sx={{
               display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
+              flexDirection: "column",
+              gap: { xs: 4, md: 6 },
               width: "100%",
               maxWidth: 1200,
-              gap: { xs: 4, md: 6 },
             }}
           >
-            {/* visionary image */}
-            <Box
-              sx={{
-                flex: 1,
-                minWidth: 280,
-                maxWidth: 400,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            {[
+              {
+                img: "/guest1.jpg",
+                name: "Mr. Ajay Rane",
+                content:
+                  "Mr. Ajay Rane, the visionary founder of Vanaalayam, has passionately worked on bringing this dream to life for over a decade. His mission is to promote safe adventure and meaningful connections with nature.",
+              },
+              {
+                img: "/guest2.jpg",
+                name: "Ms. Anjali Sharma",
+                content:
+                  "Ms. Anjali Sharma is dedicated to fostering eco-friendly practices and community engagement at Vanaalayam. Her efforts have inspired countless visitors to embrace sustainability.",
+              },
+              {
+                img: "/guest3.jpg",
+                name: "Mr. Manoj Verma",
+                content:
+                  "Mr. Manoj Verma believes in the transformative power of nature. His contributions to Vanaalayam include innovative programs that connect people with the environment.",
+              },
+              {
+                img: "/guest4.jpg",
+                name: "Ms. Priya Singh",
+                content:
+                  "Ms. Priya Singh has been instrumental in creating a serene and welcoming atmosphere at Vanaalayam. Her vision is to make every visitor's experience unforgettable.",
+              },
+            ].map((item, idx) => (
               <Box
-                component="img"
-                src="/plant.jpg"
-                alt="Visionary Behind Vanaalayam"
+                key={idx}
                 sx={{
-                  width: "100%",
-                  maxHeight: 320,
-                  objectFit: "cover",
-                  display: "block",
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  alignItems: "center",
+                  gap: { xs: 3, md: 4 },
                 }}
-              />
-            </Box>
+              >
+                {/* Guest Image */}
+                <Box
+                  component="img"
+                  src={item.img}
+                  alt={item.name}
+                  sx={{
+                    width: { xs: "100%", md: 280 },
+                    height: { xs: 180, md: 200 },
+                    objectFit: "cover",
+                    borderRadius: 2,
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+                  }}
+                />
 
-            {/* visionary text */}
-            <Box
-              sx={{
-                flex: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "Montserrat, sans-serif",
-                  fontWeight: 700,
-                  color: "#fff",
-                  mb: 2,
-                  letterSpacing: 1,
-                  fontSize: { xs: 20, md: 26 },
-                }}
-              >
-                VISIONARY BEHIND VANAALAYAM
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Montserrat, sans-serif",
-                  color: "#fff",
-                  fontSize: { xs: 15, md: 18 },
-                  lineHeight: 1.8,
-                }}
-              >
-                Vanaalayam, A Part Of The Vanam India Foundation, Was Founded By
-                Visionary Industrialists And Agriculturalists From Tirupur,
-                Coimbatore, And Erode. Committed To Environmental Conservation
-                And Sustainable Living, They Envisioned A Green Sanctuary
-                Promoting Plastic Free Practices, Tree Adoption, And Community
-                Engagement. Visitors Can Walk Through Lush Greenery, Connect
-                With Nature, And Participate In Initiatives That Support
-                Sustainability. Guided By Their Passion, Vanaalayam Continues To
-                Inspire Learning, Reflection, And Meaningful Action For A
-                Greener Tomorrow.
-              </Typography>
-            </Box>
+                {/* Guest Content */}
+                <Box sx={{ flex: 1 }}>
+                  <Typography
+                    sx={{
+                      fontFamily: "Montserrat, sans-serif",
+                      fontWeight: 700,
+                      fontSize: { xs: 17, md: 22 },
+                      color: "#fff",
+                      mb: 1,
+                    }}
+                  >
+                    {item.name}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Montserrat, sans-serif",
+                      fontWeight: 400,
+                      fontSize: { xs: 14, md: 16 },
+                      lineHeight: 1.7,
+                      color: "#fff",
+                    }}
+                  >
+                    {item.content}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
           </Box>
         </Box>
 
@@ -1400,7 +1443,7 @@ const Vanaalaym = () => {
         <Box
           sx={{
             marginTop: "100px",
-            width: "1280px",
+            width: "1345px",
             position: "relative",
             right: "25px",
             background: "#a07c54",
@@ -1565,6 +1608,18 @@ const Vanaalaym = () => {
                 >
                   <img
                     src="/instagram-logo.png"
+                    alt="Instagram"
+                    style={{ width: 28, height: 28 }}
+                  />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#fff" }}
+                >
+                  <img
+                    src="/TRIP.png"
                     alt="Instagram"
                     style={{ width: 28, height: 28 }}
                   />
