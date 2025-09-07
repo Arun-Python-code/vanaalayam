@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
@@ -11,6 +11,19 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { CheckCircleOutlineRounded } from "@mui/icons-material";
+import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 const menuItems = [
   "HOME",
@@ -75,9 +88,27 @@ const banners = [
   },
 ];
 
+const galleryImages = [
+  "/bed1.jpg",
+  "/bed2.jpg",
+  "/bed3.jpg",
+  "/bed4.jpg",
+  "/bed5.jpg",
+];
+
 const Vanaalaym = () => {
   const [current, setCurrent] = useState(0);
-  // Removed unused currentImageIndex
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
+  const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phoneNumber: "",
+    roomType: "",
+    checkIn: "",
+    checkOut: "",
+    email: "",
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -98,7 +129,33 @@ const Vanaalaym = () => {
     }
   };
 
-  // Removed unused handleSwipe function
+  const handleBookingModalOpen = () => {
+    setOpenBookingModal(true);
+  };
+
+  const handleBookingModalClose = () => {
+    setOpenBookingModal(false);
+    setFormData({
+      name: "",
+      phoneNumber: "",
+      roomType: "",
+      checkIn: "",
+      checkOut: "",
+      email: "",
+    }); // Reset form data
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    // Post formData to backend
+    console.log("Form Data Submitted:", formData);
+    // Close modal after submission
+    setOpenBookingModal(false);
+  };
 
   // const swipeHandlers = useSwipeable({
   //   onSwipedLeft: () => handleSwipe("LEFT"),
@@ -111,7 +168,7 @@ const Vanaalaym = () => {
         position="fixed" // Changed from "static" to "sticky"
         color="inherit"
         elevation={1}
-        sx={{ boxShadow: "0 2px 8px rgba(0,0,0,0.07)" }}
+        sx={{ boxShadow: "0 2px 8px rgba(0,0,0,0.07}" }}
       >
         <Toolbar sx={{ justifyContent: "space-between", minHeight: 80 }}>
           <Box
@@ -124,7 +181,7 @@ const Vanaalaym = () => {
             <img
               src="/toplogo.png"
               alt="Vanaalayam Logo"
-              style={{ height: 108, marginLeft: "140%" }}
+              style={{ height: 108, marginLeft: "100%" }}
             />
           </Box>
           <Box
@@ -149,7 +206,9 @@ const Vanaalaym = () => {
                 {item}
               </Typography>
             ))}
-            <ReserveButton variant="contained">RESERVE</ReserveButton>
+            <ReserveButton variant="contained" onClick={handleBookingModalOpen}>
+              BOOK NOW
+            </ReserveButton>
           </Box>
         </Toolbar>
       </AppBar>
@@ -275,22 +334,18 @@ const Vanaalaym = () => {
               {
                 img: "/bed1.jpg",
                 title: "Deluxe Room - 180sq.ft",
-                desc: "The 03 Single Bed Rooms At Our Resort",
               },
               {
                 img: "/bed4.jpg",
                 title: "Family Room - 240sq.ft ",
-                desc: "The 02 Suite Rooms At Our Resort",
               },
               {
                 img: "/bed2.jpg",
                 title: "Suite Room - 400sq.ft",
-                desc: "The 16 Queen Size Rooms At Our Resort",
               },
               {
                 img: "/bed5.jpg",
                 title: "Dormitory Room - 500sq.ft",
-                desc: "The 05 Dormitory Rooms At Our Resort",
               },
             ].map((item, idx) => (
               <Box
@@ -314,7 +369,9 @@ const Vanaalaym = () => {
                     borderRadius: 2,
                     boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
                     flexShrink: 0,
+                    cursor: "pointer", // Add pointer cursor
                   }}
+                  onClick={() => setOpenModal(true)} // Open modal on click
                 />
 
                 {/* Text */}
@@ -361,6 +418,7 @@ const Vanaalaym = () => {
                         color: "#000",
                       },
                     }}
+                    onClick={handleBookingModalOpen} // Open booking modal
                   >
                     Book Now
                   </Button>
@@ -590,8 +648,9 @@ const Vanaalaym = () => {
       </Container>
 
       <Container id="gallery" maxWidth={false} sx={{ px: 0 }}>
-        <Container maxWidth={false} sx={{ px: 0 }}>
+        <Container id="gallery" maxWidth={false} sx={{ px: 0 }}>
           {/* GALLERY */}
+
           <Box sx={{ width: "100%", mt: 6, mb: 0 }}>
             <Typography
               sx={{
@@ -609,55 +668,31 @@ const Vanaalaym = () => {
             <Box
               sx={{
                 position: "relative",
+                borderRadius: "10px",
                 maxWidth: 900,
                 margin: "0 auto",
                 px: 2,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
+                alignItems: "baseline",
+                backgroundColor: "#a07c54",
               }}
             >
-              {/* Arrow pointer */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: -18,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: 36,
-                  height: 18,
-                  zIndex: 2,
-                  overflow: "visible",
-                  pointerEvents: "none",
-                }}
-              >
-                <div style={{ marginTop: "18px" }}>
-                  <svg
-                    width="36"
-                    height="18"
-                    viewBox="0 0 36 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <polygon points="0,0 18,18 36,0" fill="#fff" />
-                  </svg>
-                </div>
-              </Box>
-              <Box
-                sx={{
-                  position: "absolute",
-                  background: "#a07c54",
-                  borderRadius: 8,
-                  p: { xs: 2, md: 3 },
-                  display: "flex",
-                  gap: { xs: 2, md: 3 },
-                  justifyContent: "center",
-                  alignItems: "center",
-                  minHeight: 220,
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                  flexWrap: "nowrap",
+              {/* Swiper Gallery */}
+              <Swiper
+                slidesPerView={3}
+                centeredSlides={false}
+                spaceBetween={30}
+                pagination={false}
+                navigation={true}
+                modules={[Navigation]}
+                style={{
                   width: "100%",
                   maxWidth: 900,
+                  minHeight: 220,
+                  paddingLeft: "43px", // Add space for left arrow
+                  // Add space for right arrow
+                  boxSizing: "border-box",
                 }}
               >
                 {[
@@ -667,107 +702,35 @@ const Vanaalaym = () => {
                   "/bed4.jpg",
                   "/bed5.jpg",
                 ].map((img, idx) => (
-                  <Box
-                    key={img}
-                    sx={{
-                      width: { xs: 120, md: 220 },
-                      height: { xs: 90, md: 160 },
-                      overflow: "hidden",
-                      background: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      overflowX: "hidden",
-                      borderRadius: 1,
-                    }}
-                  >
-                    <img
-                      src={img}
-                      alt={`Gallery ${idx + 1}`}
-                      style={{
-                        width: "200px",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                position: "relative",
-                maxWidth: 1100,
-                mx: "auto",
-                px: 2,
-              }}
-            >
-              {/* Arrow pointer */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: -18,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: 36,
-                  height: 18,
-                  zIndex: 2,
-                  pointerEvents: "none",
-                }}
-              >
-                <svg
-                  width="36"
-                  height="18"
-                  viewBox="0 0 36 18"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polygon points="0,0 18,18 36,0" fill="#ffffff" />
-                </svg>
-              </Box>
-
-              {/* Brown strip with images */}
-              <Box
-                sx={{
-                  background: "#a07c54",
-                  borderRadius: 2,
-                  p: { xs: 2, md: 3 },
-                  display: "flex",
-                  gap: { xs: 2, md: 3 },
-                  justifyContent: "center",
-                  alignItems: "center",
-
-                  minHeight: { xs: 180, md: 220 },
-                }}
-              >
-                {["/bed1.jpg", "/bed2.jpg", "/bed3.jpg", "/bed4.jpg"].map(
-                  (img, idx) => (
+                  <SwiperSlide key={img}>
                     <Box
-                      key={idx}
                       sx={{
-                        width: { xs: 150, sm: 200, md: 240 },
-                        height: { xs: 110, sm: 140, md: 160 },
-                        borderRadius: 1,
+                        width: { xs: 120, md: 220 },
+                        height: { xs: 90, md: 160 },
                         overflow: "hidden",
                         background: "#fff",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                        flexShrink: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: 2,
+                        marginTop: "30px",
                       }}
                     >
-                      <Box
-                        component="img"
+                      <img
                         src={img}
                         alt={`Gallery ${idx + 1}`}
-                        sx={{
+                        style={{
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
-                          display: "block",
+                          borderRadius: "8px",
                         }}
                       />
                     </Box>
-                  )
-                )}
-              </Box>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              {/* Swiper navigation arrows are handled by Swiper, no extra markup needed */}
             </Box>
           </Box>
         </Container>
@@ -1480,6 +1443,7 @@ const Vanaalaym = () => {
                 maxWidth: 45,
                 "&:hover": { background: "#c2a482", color: "#7d6a4a" },
               }}
+              onClick={handleBookingModalOpen}
             >
               BOOK NOW
             </Button>
@@ -1533,7 +1497,7 @@ const Vanaalaym = () => {
               >
                 PHONE : 9791346444
                 <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9791396444
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9791396444
               </Typography>
               <Typography
                 sx={{
@@ -1549,7 +1513,7 @@ const Vanaalaym = () => {
               </Typography>
             </Box>
 
-            {/* Facilities */}
+            {/* Have any Questions? */}
             <Box sx={{ px: { xs: 0, md: 2 } }}>
               <Typography
                 sx={{
@@ -1562,26 +1526,50 @@ const Vanaalaym = () => {
                   pb: 0.5,
                 }}
               >
-                FACILITIES
+                Have any Questions?
               </Typography>
-              {[
-                "ROOM SERVICE",
-                "FREE WI-FI",
-                "FREE PARKING",
-                "UNIQUE GARDENS",
-              ].map((t) => (
-                <Typography
-                  key={t}
-                  sx={{
-                    color: "#fff",
-                    fontSize: 16,
-                    mt: 2,
-                    fontFamily: "Montserrat, sans-serif",
-                  }}
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: 16,
+                  mt: 2,
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+              >
+                E-mail us at <br />
+                <span style={{ color: "red", fontWeight: 600 }}>
+                  frontoffice@vanaalayamretreat.com
+                </span>{" "}
+                and we'll
+                <br />
+                get in touch
+              </Typography>
+              <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#fff" }}
                 >
-                  {t}
-                </Typography>
-              ))}
+                  <img
+                    src="/facebook-logo.png"
+                    alt="Facebook"
+                    style={{ width: 28, height: 28 }}
+                  />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#fff" }}
+                >
+                  <img
+                    src="/instagram-logo.png"
+                    alt="Instagram"
+                    style={{ width: 28, height: 28 }}
+                  />
+                </a>
+              </Box>
             </Box>
 
             {/* Location */}
@@ -1602,7 +1590,7 @@ const Vanaalaym = () => {
               <Box
                 sx={{
                   mt: 2,
-                  width: 260,
+                  width: 500,
                   height: 180, // keep same card size as your design
                   background: "#fff",
                   borderRadius: 2,
@@ -1630,6 +1618,290 @@ const Vanaalaym = () => {
           </Box>
         </Box>
       </Container>
+      {/* Modal */}
+      <Modal open={openModal} onClose={() => setOpenModal(false)}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            bgcolor: "background.paper",
+            borderRadius: 2,
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          {/* Close Icon */}
+          <IconButton
+            onClick={() => setOpenModal(false)}
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          {/* Large Image */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mb: 4,
+            }}
+          >
+            <Box
+              component="img"
+              src={galleryImages[currentImageIndex]} // Display the selected image
+              alt={`Room Image ${currentImageIndex + 1}`}
+              sx={{
+                width: "100%",
+                maxHeight: 400,
+                objectFit: "contain",
+                borderRadius: 2,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+              }}
+            />
+          </Box>
+
+          {/* Thumbnail Images */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
+            {galleryImages.map((img, idx) => (
+              <Box
+                key={idx}
+                component="img"
+                src={img}
+                alt={`Thumbnail ${idx + 1}`}
+                onClick={() => setCurrentImageIndex(idx)} // Update the large image on thumbnail click
+                sx={{
+                  width: 80,
+                  height: 80,
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  cursor: "pointer",
+                  border:
+                    currentImageIndex === idx
+                      ? "2px solid #000"
+                      : "2px solid transparent",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                }}
+              />
+            ))}
+          </Box>
+        </Box>
+      </Modal>
+
+      {/* Booking Modal */}
+      <Modal open={openBookingModal} onClose={handleBookingModalClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            bgcolor: "background.paper",
+            borderRadius: 2,
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          {/* Close Icon */}
+          <IconButton
+            onClick={handleBookingModalClose}
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          {/* Form */}
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "Poppins, Arial, sans-serif",
+              fontWeight: 700,
+              mb: 3,
+              textAlign: "center",
+            }}
+          >
+            Book Your Stay
+          </Typography>
+          <Box
+            component="form"
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: 3,
+            }}
+          >
+            <TextField
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleFormChange}
+              fullWidth
+              required
+              inputProps={{ maxLength: 100 }} // Limit input to 100 characters
+              error={formData.name.length > 100}
+              helperText={
+                formData.name.length > 100
+                  ? "Name cannot exceed 100 characters."
+                  : ""
+              }
+            />
+            <TextField
+              label="Phone Number"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleFormChange}
+              fullWidth
+              required
+              inputProps={{ maxLength: 13, pattern: "[0-9]*" }} // Limit input to 13 digits and numbers only
+              error={
+                formData.phoneNumber.length > 13 || isNaN(formData.phoneNumber)
+              }
+              helperText={
+                formData.phoneNumber.length > 13
+                  ? "Phone number cannot exceed 13 digits."
+                  : isNaN(formData.phoneNumber)
+                  ? "Phone number must contain only digits."
+                  : ""
+              }
+            />
+            <TextField
+              label="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleFormChange}
+              fullWidth
+              required
+              error={
+                formData.email &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) // Validate email format
+              }
+              helperText={
+                formData.email &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+                  ? "Please enter a valid email address."
+                  : ""
+              }
+            />
+            <TextField
+              label="Check-In Date & Time"
+              name="checkIn"
+              type="datetime-local"
+              value={formData.checkIn}
+              onChange={handleFormChange}
+              fullWidth
+              required
+              InputLabelProps={{
+                shrink: true, // Ensures the label stays above the input
+              }}
+              error={
+                formData.checkIn &&
+                formData.checkOut &&
+                new Date(formData.checkIn) >= new Date(formData.checkOut)
+              }
+              helperText={
+                formData.checkIn &&
+                formData.checkOut &&
+                new Date(formData.checkIn) >= new Date(formData.checkOut)
+                  ? "Check-In time must be earlier than Check-Out time."
+                  : ""
+              }
+            />
+            <TextField
+              label="Check-Out Date & Time"
+              name="checkOut"
+              type="datetime-local"
+              value={formData.checkOut}
+              onChange={handleFormChange}
+              fullWidth
+              required
+              InputLabelProps={{
+                shrink: true, // Ensures the label stays above the input
+              }}
+              error={
+                formData.checkIn &&
+                formData.checkOut &&
+                new Date(formData.checkOut) <= new Date(formData.checkIn)
+              }
+              helperText={
+                formData.checkIn &&
+                formData.checkOut &&
+                new Date(formData.checkOut) <= new Date(formData.checkIn)
+                  ? "Check-Out time must be later than Check-In time."
+                  : ""
+              }
+            />
+            <FormControl fullWidth required>
+              <InputLabel>Room Type</InputLabel>
+              <Select
+                name="roomType"
+                value={formData.roomType}
+                onChange={handleFormChange}
+              >
+                <MenuItem value="Deluxe Room">Deluxe Room</MenuItem>
+                <MenuItem value="Family Room">Family Room</MenuItem>
+                <MenuItem value="Suite Room">Suite Room</MenuItem>
+                <MenuItem value="Dormitory Room">Dormitory Room</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: 3,
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                background: "#c2a482",
+                color: "#7d6a4a",
+                fontWeight: 700,
+                textTransform: "none",
+                fontSize: 16,
+                px: 4,
+                py: 1,
+                boxShadow: "none",
+                "&:hover": { background: "#b79773", boxShadow: "none" },
+              }}
+              onClick={handleSubmit}
+              disabled={
+                !formData.name ||
+                !formData.phoneNumber ||
+                !formData.email ||
+                !formData.checkIn ||
+                !formData.checkOut ||
+                new Date(formData.checkIn) >= new Date(formData.checkOut) ||
+                new Date(formData.checkOut) <= new Date(formData.checkIn) ||
+                formData.name.length > 100 ||
+                formData.phoneNumber.length > 13 ||
+                isNaN(formData.phoneNumber) ||
+                (formData.email &&
+                  !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+              }
+            >
+              Submit
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </Box>
   );
 };
