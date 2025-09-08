@@ -27,7 +27,8 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "./App.css";
 
 const menuItems = [
-  "HOME&OFFERINGS",
+  "HOME",
+  "OFFERINGS",
   "ABOUT US",
   "GALLERY",
   "AT VANAALAYAM",
@@ -36,7 +37,8 @@ const menuItems = [
 ];
 
 const sectionMap = {
-  "HOME&OFFERINGS": "toplogo",
+  HOME: "toplogo",
+  "OFFERINGS":"OFFERINGS",
   "ABOUT US": "aboutus",
   GALLERY: "gallery",
   "AT VANAALAYAM": "whychooseus",
@@ -293,7 +295,8 @@ const Vanaalaym = () => {
         </Box>
       </Box>
       {/* Offerings Section - Updated UI */}
-      <Container maxWidth={false} sx={{ px: 0 }}>
+      <Container  id="OFFERINGS" maxWidth={false} sx={{ px: 0 }}>
+       
         <Box
           sx={{
             width: "90%",
