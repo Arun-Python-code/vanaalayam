@@ -27,22 +27,20 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "./App.css";
 
 const menuItems = [
-  "HOME",
-  "OFFERINGS",
+  "HOME&OFFERINGS",
   "ABOUT US",
   "GALLERY",
-  "WHY CHOOSE US?",
-  "FACILITIES",
+  "AT VANAALAYAM",
+  "VANAM FOUNDATION",
   "CONTACT US",
 ];
 
 const sectionMap = {
-  HOME: "toplogo",
-  OFFERINGS: "offerings",
+  "HOME&OFFERINGS": "toplogo",
   "ABOUT US": "aboutus",
   GALLERY: "gallery",
-  "WHY CHOOSE US?": "whychooseus",
-  FACILITIES: "facilities",
+  "AT VANAALAYAM": "whychooseus",
+  "VANAM FOUNDATION": "facilities",
   "CONTACT US": "contactus",
 };
 
@@ -228,6 +226,7 @@ const Vanaalaym = () => {
         }}
       >
         <Container
+          id="toplogo"
           maxWidth="lg"
           sx={{
             display: "flex",
@@ -294,7 +293,7 @@ const Vanaalaym = () => {
         </Box>
       </Box>
       {/* Offerings Section - Updated UI */}
-      <Container id="offerings" maxWidth={false} sx={{ px: 0 }}>
+      <Container maxWidth={false} sx={{ px: 0 }}>
         <Box
           sx={{
             width: "90%",
@@ -578,11 +577,11 @@ const Vanaalaym = () => {
                 lineHeight: 1.7,
               }}
             >
-              Vanaalayam, Located On The Coimbatore–Tiruchy (Trichy) Highway
-              Near Palladam, Is The Flagship Eco-Green Recreation Park Of The
-              Vanam India Foundation. Spread Across 18 Acres, It Stands As More
-              Than A Lush Retreat—It Embodies A Vibrant Commitment To
-              Sustainability And Community Harmony.
+              Vanaalayam, Located On The Coimbatore–Tiruchy Highway Near
+              Palladam, Is The Flagship Eco-Green Recreation Park Of The Vanam
+              India Foundation. Spread Across 18 Acres, It Stands As More Than A
+              Lush Retreat—It Embodies A Vibrant Commitment To Sustainability
+              And Community Harmony.
             </Typography>
 
             <Typography
@@ -731,7 +730,6 @@ const Vanaalaym = () => {
 
       {/* WHY CHOOSE US */}
       <Box
-        id="whychooseus"
         sx={{
           width: "1380px",
           position: "relative",
@@ -985,7 +983,6 @@ const Vanaalaym = () => {
       <Container maxWidth={false} sx={{ px: 0 }}>
         {/* ACTIVITIES */}
         <Box
-          id="facilities"
           sx={{
             width: "1345px",
             position: "relative",
@@ -996,6 +993,7 @@ const Vanaalaym = () => {
           }}
         >
           <Box
+            id="whychooseus"
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
@@ -1326,6 +1324,7 @@ const Vanaalaym = () => {
         {/* VISIONARY BEHIND VANAALAYAM */}
         {/* VISIONARY BEHIND VANAALAYAM */}
         <Box
+          id="facilities"
           sx={{
             width: "1345px",
             mx: "auto",
@@ -1580,7 +1579,7 @@ const Vanaalaym = () => {
                 }}
               >
                 E-mail us at <br />
-                <span style={{ color: "red", fontWeight: 600 }}>
+                <span style={{ fontWeight: 600 }}>
                   frontoffice@vanaalayamretreat.com
                 </span>{" "}
                 and we'll
