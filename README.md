@@ -42,7 +42,7 @@ git clone https://github.com/your-username/vanalayam-resort.git
 2. Navigate to the project directory:
 
 ```bash
-cd vanalayam-resort
+cd vanaalayam
 ```
 
 3. Install dependencies:
