@@ -1,9 +1,9 @@
 import "./App.css";
-import Vanaalaym from "./Vanaalaym";
+import navbar from "./navbar";
 function App() {
   return (
     <div className="App">
-      <Vanaalaym/>
+      <navbar />
     </div>
   );
 }
