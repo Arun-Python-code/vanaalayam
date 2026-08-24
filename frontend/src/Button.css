@@ -1,0 +1,120 @@
+.form-head {
+  width: min(1000px, 95%);
+  padding: 25px 30px 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+/* Close button row */
+.form-head > div:first-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Heading */
+.form-head h2 {
+  text-align: center;
+  margin: 0 0 25px;
+  color: rgb(14, 12, 12);
+  font-size: 28px;
+}
+
+/* YOUR THREE FORM ROWS */
+.form-head #form-content,
+.form-head #form-content + div,
+.form-head #form-content + div + div {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+/* Two columns inside each row */
+.form-head #form-content > div,
+.form-head #form-content + div > div,
+.form-head #form-content + div + div > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-head label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #838181;
+}
+
+/* Inputs */
+.form-head input,
+.form-head select {
+  width: 100%;
+  height: 44px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+
+  border: 1px solid #ccc;
+  border-radius: 7px;
+
+  font-size: 14px;
+  outline: none;
+  color: #535252;
+}
+
+.form-head input:focus,
+.form-head select:focus {
+  border-color: #5fe6f8;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.12);
+}
+
+/* Close button */
+#close-button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #555;
+  cursor: pointer;
+}
+
+#close-button:hover {
+  border-radius: 50%;
+
+  background: #a19e9e;
+}
+/* Book Now button */
+.form-head button[type="submit"] {
+  padding: 11px 25px;
+  margin-top: 8px;
+  letter-spacing: 0.08em;
+
+  background: #b69773;
+  color: black;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+#form-status {
+  color: #4777fc;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 300;
+}
+.form-head button[type="submit"]:hover {
+  background: #c2a482;
+}
+/* Mobile */
+@media (max-width: 650px) {
+  .form-head #form-content,
+  .form-head #form-content + div,
+  .form-head #form-content + div + div {
+    flex-direction: column;
+  }
+}

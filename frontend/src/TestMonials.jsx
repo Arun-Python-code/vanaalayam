@@ -1,6 +1,12 @@
 import React from "react";
+import { useState } from "react";
+import Button from "./button";
 
 export default function TestMonials() {
+
+  const [roomId,  setRoomId] = useState(null)
+  const [open,  setOpen] = useState(false)
+
   const test = [
     {
       content:
@@ -107,25 +113,29 @@ export default function TestMonials() {
         "Ms. Priya Singh has been instrumental in creating a serene and welcoming atmosphere at Vanaalayam. Her vision is to make every visitor's experience unforgettable.",
     },
   ];
-
+ function ButtonClick ( setcount  ) {
+    setRoomId(setcount)
+    setOpen(true)
+    console.log(setcount)
+  };
+  
   return (
-    <>
+    <div>
+     { open && (
+          <div id="Button-open">
+              <Button id={roomId-1} onClose={() => setOpen(false)}  />
+          </div>
+         )}
       {/* Testmoniels */}
-      <div
-        style={{
-          marginTop: "5%",
-        }}
-      >
-        <h1 style={{ textAlign: "center" }}>VALUABLE TESTIMONIALS</h1>
+      <div className="testimonials-section">
+        <h1 className="testimonials-title">VALUABLE TESTIMONIALS</h1>
         <div className="reviews-container">
           {test.map((item, index) => (
             <div
-              className="review-card"
+              className={`review-card ${
+                index === 1 || index === 2 ? "review-card-tall" : ""
+              }`}
               key={index}
-              style={{
-                height: index === 1 || index === 2 ? "420px" : "400px",
-                marginTop: index === 1 || index === 2 ? "15%" : "0%",
-              }}
             >
               <h3 className="review-text">{item.content}</h3>
 
@@ -145,213 +155,86 @@ export default function TestMonials() {
           ))}
         </div>
         {/* At Vannalayam */}
-        <div style={{display:"flex", justifyContent:"space-between",  background: "#aab28b",padding:"2%", height:"340px"}}>
-          <div style={{width:"25%", heightL:"20px", display:"flex",  justifyContent:"center",}}>
-            <img src="/plant.jpg" alt="plant_image" style={{width:"100%", height:"100%", objectFit:"cover"}} />
+        <div className="vanaalayam-banner">
+          <div className="vanaalayam-image">
+            <img src="/plant.jpg" alt="plant_image" />
           </div>
           {at_vanaam.map((vanaam, index) => (
-            <div
-              key={index}
-              style={{
-                width:"70%",
-                display: "flex",
-                flexDirection: "column",
-                color: "white",
-          
-              }}
-            >
-              <div >
-                <h1 style={{ textAlign: "left", paddingBottom:"0px",}}>{vanaam.title}</h1>
+            <div key={index} className="vanaalayam-content">
+              <div>
+                <h1 className="vanaalayam-title">{vanaam.title}</h1>
               </div>
-              <p
-                style={{
-                  fontSize: "105%",
-                  letterSpacing: "0.08em",
-                  lineHeight: 1.7,
-                }}
-              >
-                {vanaam.content}
-              </p>
+              <p className="vanaalayam-text">{vanaam.content}</p>
 
-             <div style={{display:"flex", justifyContent:"center"}}>
-               <button
-                style={{
-                  backgroundColor: "#c2a482",
-                  border: "none",
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                }}
-              >
-                KNOW MORE
-              </button>
-             </div>
+              <div className="vanaalayam-btn-wrap">
+                <button className="vanaalayam-btn">KNOW MORE</button>
+              </div>
             </div>
           ))}
         </div>
         {/* Near by loctions dtails */}
-        <div style={{ marginTop: "5%" }}>
-          <h2 style={{ textAlign: "center", letterSpacing: "0.08em" }}>
-            INSIDE
-          </h2>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-              marginTop: "2%",
-            }}
-          >
+        <div className="inside-section">
+          <h2 className="inside-title">INSIDE</h2>
+          <div className="inside-grid">
             {inside_img.map((image, index) => (
-              <div
-                key={index}
-                style={{ width: "290px", height: "210px", textAlign: "center" }}
-              >
-                <img
-                  src={image.img}
-                  alt={image.alt}
-                  style={{ width: "100%", height: "100%" }}
-                />
-                <p style={{ letterSpacing: "letter-spacing: 0.08em;" }}>
-                  {image.content}
-                </p>
+              <div key={index} className="inside-card">
+                <img src={image.img} alt={image.alt} />
+                <p className="card-caption">{image.content}</p>
               </div>
             ))}
           </div>
-          <div
-            style={{
-              marginTop: "6%",
-              height: "400px",
-              position: "relative",
-              background: "rgba(255,255,255,0.85)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              letterSpacing: "0.08em",
-            }}
-          >
+          <div className="nearby-section">
             <img
               src="/about.jpg"
               alt="about_image"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                zIndex: "-1",
-              }}
+              className="nearby-bg-image"
             />
-            <h2 style={{ textAlign: "center", marginTop: "0%" }}>NEAR BY</h2>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                marginTop: "3%",
-              }}
-            >
+            <h2 className="nearby-title">NEAR BY</h2>
+            <div className="nearby-grid">
               {nearby.map((image, index) => (
-                <div
-                  key={index}
-                  style={{
-                    width: "240px",
-                    height: "170px",
-                    textAlign: "center",
-                  }}
-                >
-                  <img
-                    src={image.img}
-                    alt={image.alt}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                  <p style={{ letterSpacing: "letter-spacing: 0.08em;" }}>
-                    {image.content}
-                  </p>
+                <div key={index} className="nearby-card">
+                  <img src={image.img} alt={image.alt} />
+                  <p className="card-caption">{image.content}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
         {/* visions */}
-        <div style={{ background: "#a07c54" }}>
-          <h2 style={{ textAlign: "center", color: "#fff", marginTop: "3%" }}>
-            VISIONARY BEHIND VANAALAYAM
-          </h2>
+        <div className="vision-section">
+          <h2 className="vision-title">VISIONARY BEHIND VANAALAYAM</h2>
 
           {vision.map((vison, index) => (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                marginBottom: "25px",
-                paddingLeft: "3%",
-                paddingRight: "3%",
-              }}
-            >
-              <div
-                style={{
-                  width: "260px",
-                  height: "200px",
-                  borderRadius: 2,
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
-                }}
-              >
-                <img
-                  src={vison.img}
-                  alt={vison.name}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
+            <div key={index} className="vision-card">
+              <div className="vision-card-image">
+                <img src={vison.img} alt={vison.name} />
               </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  width: "70%",
-                  marginLeft: "2%",
-                  color: "#fff",
-                }}
-              >
-                <p style={{ marginBottom: "0%", fontSize: "22px" }}>
-                  {vison.name}
-                </p>
-
-                <p style={{ lineHeight: 1.7, fontSize: "16px" }}>
-                  {vison.content}
-                </p>
+              <div className="vision-card-content">
+                <p className="vision-name">{vison.name}</p>
+                <p className="vision-text">{vison.content}</p>
               </div>
             </div>
           ))}
         </div>
         {/* footer section */}
-        <div style={{ height: "400px", position: "relative" }}>
-          <button className="footer-button">BOOK NOw</button>
+        <div className="footer-wrapper">
+          <button className="footer-button" onClick={() => ( ButtonClick(1) )} >BOOK NOw</button>
           <div className="footer-contact">
             {/* CONTACT */}
             <div className="footer-section">
-              <h4 style={{ fontSize: 22 }}>CONTACT</h4>
+              <h4 className="footer-heading">CONTACT</h4>
 
               <div className="contact-details">
                 <span className="detais">ADDRESS:</span>
                 <span className="detais"> VANAALAYAM,TRICHY RD,</span>
                 <span className="detais"> PALLADAM, TAMIL NADU 641662</span>
 
-                <span className="detais" style={{ marginTop: "8px" }}>
-                  PHONE:
-                </span>
+                <span className="detais detais-spaced">PHONE:</span>
                 <span>9791346444</span>
                 <span className="detais">9791396444</span>
 
-                <span className="detais" style={{ marginTop: "8px" }}>
-                  MAIL ID:
-                </span>
+                <span className="detais detais-spaced">MAIL ID:</span>
                 <span className="detais">
                   frontoffice@vanaalayamretreat.com
                 </span>
@@ -360,7 +243,7 @@ export default function TestMonials() {
 
             {/* QUESTIONS */}
             <div className="footer-section">
-              <h4 style={{ fontSize: 22 }}>Have any Questions?</h4>
+              <h4 className="footer-heading">Have any Questions?</h4>
 
               <div className="question-details">
                 <span className="detais">E-mail us at</span>
@@ -399,7 +282,7 @@ export default function TestMonials() {
 
             {/* LOCATION */}
             <div className="footer-section location-section">
-              <h4 style={{ fontSize: 22 }}>LOCATION</h4>
+              <h4 className="footer-heading">LOCATION</h4>
 
               <div className="map-container">
                 <iframe
@@ -414,6 +297,6 @@ export default function TestMonials() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
