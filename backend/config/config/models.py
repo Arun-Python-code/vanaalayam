@@ -22,3 +22,13 @@ class Booking(models.Model):
                     break
 
         super().save(*args, **kwargs)
+
+
+class Rooms_types(models.Model):
+    rooms_type = models.CharField(max_length=20)
+    total_rooms = models.IntegerField()
+    available_rooms = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+

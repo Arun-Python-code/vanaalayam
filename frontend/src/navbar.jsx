@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import "./App.css";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,8 +7,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TestMonials from "./TestMonials";
+import Button from "./button";
 
 export default function Navbar() {
+  const [roomId, setRoomId] = useState(null);
+  const [open, setOpen] = useState(false);
+
   const navbar_items = [
     "picture",
     "HOME",
@@ -126,41 +131,41 @@ export default function Navbar() {
       content: "PLASTIC-FREE ENVIRONMENT",
     },
   ];
+
+  function ButtonClick(setcount) {
+    setRoomId(setcount);
+    setOpen(true);
+    console.log(setcount);
+  }
   return (
     <div>
+      {open && (
+        <div id="Button-open">
+          <Button id={roomId - 1} onClose={() => setOpen(false)} />
+        </div>
+      )}
       {/* navbar */}
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          marginTop: "7px",
-          marginLeft: "100px",
-          marginRight: "100px",
-        }}
-      >
+      <nav className="main-nav">
         {navbar_items.map((item, index) =>
           item === "picture" ? (
             <img
+              key={index}
               src="/toplogo.png"
               alt="Logo"
-              style={{ width: "100px", height: "auto" }}
+              className="nav-logo"
             />
           ) : item === "BOOK NOW" ? (
             <button
-              style={{
-                backgroundColor: "#c2a482",
-                border: "none",
-                padding: "10px 20px",
-                cursor: "pointer",
-              }}
+              key={index}
+              className="nav-button"
+              onClick={() => ButtonClick(1)}
             >
               BOOK NOW
             </button>
           ) : (
             <a
-              style={{ textDecoration: "none", color: "black" }}
               key={index}
+              className="nav-link"
               href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
             >
               {item}
@@ -184,45 +189,26 @@ export default function Navbar() {
             <img
               src={image}
               alt={`Banner ${index + 1}`}
-              style={{
-                marginTop: "1px",
-                width: "100%",
-                height: "82vh",
-                display: "block",
-              }}
+              className="hero-image"
             />
           </SwiperSlide>
         ))}
       </Swiper>
       {/* offerings */}
       <div>
-        <h2 style={{ textAlign: "center", fontSize: "215%" }}>OFFERINGS</h2>
+        <h2 className="offerings-title">OFFERINGS</h2>
 
         <div className="rooms-container">
           {offerings.map((room, index) => (
             <div className="room-card" key={index}>
               <img src={room.img} alt={room.title} />
 
-              <div
-                className="room-content"
-                style={{
-                  fontFamily: "Arial, sans-serif",
-                  fontDisplay: "swap",
-                  fontWeight: "900",
-                  color: " #111",
-                  letterSpacing: "0.00938em",
-                }}
-              >
+              <div className="room-content">
                 <h3>{room.title}</h3>
 
                 <button
-                  style={{
-                    backgroundColor: "#c2a482",
-                    border: "none",
-                    padding: "10px 20px",
-                    cursor: "pointer",
-                    marginTop: "3%",
-                  }}
+                  className="room-book-btn"
+                  onClick={() => ButtonClick(index + 2)}
                 >
                   BOOK NOW
                 </button>
@@ -232,74 +218,29 @@ export default function Navbar() {
         </div>
       </div>
       {/* Amenities Section  */}
-      <h1 style={{ textAlign: "center", fontSize: "200%", marginTop: "5%" }}>
-        Amenities
-      </h1>
+      <h1 className="amenities-title">Amenities</h1>
       <div className="facilities">
         {amenities.map((facility, index) => (
           <div className="feature" key={index}>
-            <span className="check" style={{ textAlign: "center" }}>
-              ✓
-            </span>
-            <span
-              style={{
-                padding: "10px",
-                fontWeight: "550",
-                color: "#333",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {facility}
-            </span>
+            <span className="check">✓</span>
+            <span className="feature-text">{facility}</span>
           </div>
         ))}
       </div>
       {/* about us */}
       <div>
-        <h1 style={{ textAlign: "center", marginTop: "5%", fontSize: "200%" }}>
-          ABOUT US
-        </h1>
-        <div
-          style={{
-            height: "575px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <img
-            src="/about.jpg"
-            alt="about_image"
-            style={{
-              position: "absolute",
-              height: "91%",
-              width: "100%",
-              zIndex: "-1",
-            }}
-          ></img>
+        <h1 className="about-title">ABOUT US</h1>
+        <div className="about-wrapper">
+          <img src="/about.jpg" alt="about_image" className="about-bg-image" />
 
-          <p
-            style={{
-              boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-              width: "50%",
-              background: "rgba(151, 156, 123, 0.95)",
-              textAlign: "center",
-              padding: "3%",
-              marginTop: "6%",
-              borderRadius: "3%",
-              fontFamily: "Poppins, Arial, sans-serif",
-              fontWeight: 600,
-              color: "#fff",
-              letterSpacing: 1,
-            }}
-          >
+          <div className="about-content-box">
             {about_us.map((about, index) => (
-              <div>
+              <div key={index}>
                 <h3>{about.title}</h3>
-                <p style={{ fontSize: "97%" }}>{about.content}</p>
+                <p className="about-item-text">{about.content}</p>
               </div>
             ))}
-          </p>
+          </div>
         </div>
       </div>
       {/* gallery section */}
@@ -339,64 +280,42 @@ export default function Navbar() {
         </div>
       </div>
       {/* why choose us */}
-      <div style={{ marginTop: "1%", position: "relative", letterSpacing: "0.04em" }}>
+      <div className="why-choose-section">
         <img
           src="/about.jpg"
           alt="about_image"
-          style={{
-            position: "absolute",
-            zIndex: "-1",
-            height: "100%",
-            width: "100%",
-          }}
+          className="why-choose-bg-image"
         />
-        <div
-          style={{
-            background: "rgba(255,255,255,0.85)",
-            width: "100%",
-            height: "full",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingBottom: "50px",
-          }}
-        >
-          <div style={{ textAlign: "center", width: "70%" }}>
-            <h3 style={{ marginTop: "5%", fontSize: "200%" }}>
-              WHY CHOOSE US?
-            </h3>
-            <h4 style={{ textAlign: "center", padding: "2%" }}>
+        <div className="why-choose-overlay">
+          <div className="why-choose-inner">
+            <h3 className="why-choose-title">WHY CHOOSE US?</h3>
+            <h4 className="why-choose-tagline">
               At Vanaalayam, You Don’t Just Stay — You Experience Nature.
             </h4>
             <h4>
-              {" "}
               Every Moment Here Contributes To The Growth Of Trees And A Greener
               Tomorrow.
             </h4>
-            <div className="icons" style={{}}>
+            <div className="icons">
               {why_choose_us.map((image, index) => (
-                <div key={index} style={{ display: "inline", marginTop: "3%" }}>
-                  <img
-                    src={image.img}
-                    alt={image.alt}
-                    style={{ width: "40px" }}
-                  ></img>
-                  <h4>{image.content}</h4>
+                <div className="icon-item" key={index}>
+                  <img src={image.img} alt={image.alt} className="icon-img" />
+                  <h4 className="icon-text">{image.content}</h4>
                 </div>
               ))}
             </div>
-            <div>
+            <div className="eco-space-wrapper">
               <img
                 src="/icon5.png"
                 alt="COMMUNITY-BUILT ECO SPACE"
-                style={{ width: "40px", marginTop: "3%" }}
+                className="eco-space-img"
               />
               <p>COMMUNITY-BUILT ECO SPACE</p>
             </div>
           </div>
         </div>
       </div>
-      <TestMonials/>
+      <TestMonials />
     </div>
   );
 }
