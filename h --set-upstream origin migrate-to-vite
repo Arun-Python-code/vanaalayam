@@ -1,0 +1,5 @@
+[33m7e33d8b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmigrate-to-vite[m[33m)[m update code
+[33mc2c2f6c[m join frontend and backend
+[33m9ae749d[m[33m ([m[1;31morigin/migrate-to-vite[m[33m)[m Migrate frontend from CRA to Vite
+[33mef37433[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Refactor Vanaalayam frontend and backend added
+[33m214399e[m Fix project directory name in README
