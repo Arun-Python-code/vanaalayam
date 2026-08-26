@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import "./App.css";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -7,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TestMonials from "./TestMonials";
-import Button from "./button";
+import Button from "./Button";
 
 export default function Navbar() {
   const [roomId, setRoomId] = useState(null);
