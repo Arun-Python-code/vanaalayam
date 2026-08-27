@@ -1,37 +1,38 @@
 # Vanaalayam Resort Booking System
 
-A full-stack resort booking application built with **React** and
-**Django REST Framework** that allows users to select room types,
-check room availability, submit booking details, and receive
-booking confirmation through email.
+A full-stack resort booking application built using **React** and **Django REST Framework**. The application allows users to view room types, check room availability, submit booking details, and receive an automatic booking confirmation email.
 
-## Key Features
+## 🚀 Features
 
 - Room type selection
-- Room availability checking
-- Check-in/check-out date and time validation
-- Phone and email validation
+- Real-time room availability checking
+- Check-in and check-out date/time validation
+- Phone number validation
+- Email validation
 - Booking creation through REST API
-- Automatic room availability update after booking
-- Booking confirmation email
-- Responsive React UI
+- Automatic room availability reduction after successful booking
+- Automatic booking confirmation email
+- Responsive React user interface
 - Django REST Framework backend
-- MySQL database
-- Git/GitHub version control
+- MySQL database integration
+- REST API communication between React and Django
+- Git and GitHub version control
 
-## Tech Stack
+## 🛠️ Technologies Used
 
 ### Frontend
-- React
+- React.js
 - Vite
+- JavaScript (ES6+)
 - HTML5
 - CSS3
-- JavaScript
 
 ### Backend
 - Python
 - Django
 - Django REST Framework
+- Django Email Backend
+- SMTP / Gmail
 
 ### Database
 - MySQL
@@ -39,31 +40,29 @@ booking confirmation through email.
 ### Tools
 - Git
 - GitHub
+- Visual Studio Code
 - Postman
-- VS Code
 
-## Application Flow
-
-User selects a room
-→ Enters booking details
-→ Frontend validation
-→ Django REST API
-→ Room availability check
-→ Booking created
-→ Available room count updated
-→ Confirmation email sent
-
-## Project Structure
+## 📌 Project Workflow
 
 ```text
-vanaalayam/
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
-│
-└── backend/
-    ├── manage.py
-    ├── requirements.txt
-    └── ...
+User
+ ↓
+React Booking Form
+ ↓
+Frontend Validation
+ ↓
+Django REST API
+ ↓
+Django Serializer Validation
+ ↓
+Room Availability Check
+ ↓
+Booking Saved in MySQL
+ ↓
+Room Availability Updated
+ ↓
+Booking Confirmation Email
+ ↓
+Customer Email
+
