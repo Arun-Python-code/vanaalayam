@@ -24,7 +24,7 @@ export default function Button({ id, onClose }) {
     const data = Object.fromEntries(formData.entries());
 
     // Send data to Django
-    const res = await fetch("http://127.0.0.1:8000/book/", {
+    const res = await fetch("https://vanaalayam.onrender.com/book/", {
       method: "POST",
 
       headers: {
@@ -46,7 +46,7 @@ export default function Button({ id, onClose }) {
     return result.message || "Booking successful";
   }
 
-  const [state, actionFrom] = useActionState(bookingAction, "");
+  const [state, actionFrom, ispending] = useActionState(bookingAction, "");
 
   const rooms = [
     {
@@ -143,7 +143,7 @@ export default function Button({ id, onClose }) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button type="submit">BOOK NOW</button>
+          <button type="submit">{ispending === true ? "Booking..." : "BOOK NOW"}</button>
         </div>
 
         <p id="form-status">{state}</p>
