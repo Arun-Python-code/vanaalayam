@@ -36,4 +36,4 @@ def create_booking(request):
             recipient_list=[booking.email],
         )
         return Response({"message" : "Booking created successfully! Confirmation email sent."}, status=201)
-    return Response({"message" : serial.errors}, status=400)
+    return Response({"message": "Invalid data provided!", "errors": serial.errors,}, status=400)
