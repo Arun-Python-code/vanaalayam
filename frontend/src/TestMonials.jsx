@@ -88,25 +88,25 @@ export default function TestMonials() {
 
   const vision = [
     {
-      img: "/guest1.jpg",
+      img: "/bed1.jpg",
       name: "Mr. Ajay Rane",
       content:
         "Mr. Ajay Rane, the visionary founder of Vanaalayam, has passionately worked on bringing this dream to life for over a decade. His mission is to promote safe adventure and meaningful connections with nature.",
     },
     {
-      img: "/guest2.jpg",
+      img: "/bed2.jpg",
       name: "Ms. Anjali Sharma",
       content:
         "Ms. Anjali Sharma is dedicated to fostering eco-friendly practices and community engagement at Vanaalayam. Her efforts have inspired countless visitors to embrace sustainability.",
     },
     {
-      img: "/guest3.jpg",
+      img: "/bed3.jpg",
       name: "Mr. Manoj Verma",
       content:
         "Mr. Manoj Verma believes in the transformative power of nature. His contributions to Vanaalayam include innovative programs that connect people with the environment.",
     },
     {
-      img: "/guest4.jpg",
+      img: "/bed4.jpg",
       name: "Ms. Priya Singh",
       content:
         "Ms. Priya Singh has been instrumental in creating a serene and welcoming atmosphere at Vanaalayam. Her vision is to make every visitor's experience unforgettable.",

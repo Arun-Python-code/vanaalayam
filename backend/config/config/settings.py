@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "vanaalayam.onrender.com"]
+ALLOWED_HOSTS = ["vanaalayam.onrender.com"]
 
 
 # Application definition
@@ -152,6 +152,6 @@ DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER")
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://vanaalayam.netlify.app"
+    "https://vanaalayam.netlify.app",
 ]
 
