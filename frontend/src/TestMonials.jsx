@@ -2,9 +2,8 @@ import { useState } from "react";
 import Button from "./Button";
 
 export default function TestMonials() {
-
-  const [roomId,  setRoomId] = useState(null)
-  const [open,  setOpen] = useState(false)
+  const [roomId, setRoomId] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const test = [
     {
@@ -12,28 +11,28 @@ export default function TestMonials() {
         "Nice Property with great serenity. The staff are friendly and helpful. Property is well maintained and rooms are neat and clean...",
       name: "Ravi Kumar",
       role: "Guest",
-      photo: "/guest1.jpg",
+      photo: "/profile.png",
     },
     {
       content:
         "In Vaanalayam our stay refreshed and energised us to face things that were waiting for us at our home and workplace. We had a memorable experience!",
       name: "Anjali Sharma",
       role: "Guest",
-      photo: "/guest2.jpg",
+      photo: "/profile.png",
     },
     {
       content:
         "We stayed at this property for 2 nights and enjoyed the stay very much.  The staff went out of their way to make us comfortable . They were so flexible and made us feel at home at their place ..",
       name: "Manoj Verma",
       role: "Guest",
-      photo: "/guest3.jpg",
+      photo: "/profile.png",
     },
     {
       content:
         "A perfect place to unwind! Excellent Location and surroundings. Highly recommend for nature lovers and families looking for a peaceful stay!",
       name: "Priya Singh",
       role: "Guest",
-      photo: "/guest4.jpg",
+      photo: "/profile.png",
     },
   ];
 
@@ -88,43 +87,44 @@ export default function TestMonials() {
 
   const vision = [
     {
-      img: "/bed1.jpg",
+      img: "/profile.png",
       name: "Mr. Ajay Rane",
       content:
         "Mr. Ajay Rane, the visionary founder of Vanaalayam, has passionately worked on bringing this dream to life for over a decade. His mission is to promote safe adventure and meaningful connections with nature.",
     },
     {
-      img: "/bed2.jpg",
+      img: "/profile.png",
       name: "Ms. Anjali Sharma",
       content:
         "Ms. Anjali Sharma is dedicated to fostering eco-friendly practices and community engagement at Vanaalayam. Her efforts have inspired countless visitors to embrace sustainability.",
     },
     {
-      img: "/bed3.jpg",
+      img: "/profile.png",
       name: "Mr. Manoj Verma",
       content:
         "Mr. Manoj Verma believes in the transformative power of nature. His contributions to Vanaalayam include innovative programs that connect people with the environment.",
     },
     {
-      img: "/bed4.jpg",
+      img: "/profile.png",
       name: "Ms. Priya Singh",
       content:
         "Ms. Priya Singh has been instrumental in creating a serene and welcoming atmosphere at Vanaalayam. Her vision is to make every visitor's experience unforgettable.",
     },
   ];
- function ButtonClick ( setcount  ) {
-    setRoomId(setcount)
-    setOpen(true)
-    console.log(setcount)
-  };
-  
+
+  function ButtonClick(setcount) {
+    setRoomId(setcount);
+    setOpen(true);
+    console.log(setcount);
+  }
+
   return (
     <div>
-     { open && (
-          <div id="Button-open">
-              <Button id={roomId-1} onClose={() => setOpen(false)}  />
-          </div>
-         )}
+      {open && (
+        <div id="Button-open">
+          <Button id={roomId - 1} onClose={() => setOpen(false)} />
+        </div>
+      )}
       {/* Testmoniels */}
       <div className="testimonials-section">
         <h1 className="testimonials-title">VALUABLE TESTIMONIALS</h1>
@@ -218,7 +218,9 @@ export default function TestMonials() {
         </div>
         {/* footer section */}
         <div className="footer-wrapper">
-          <button className="footer-button" onClick={() => ( ButtonClick(1) )} >BOOK NOw</button>
+          <button className="footer-button" onClick={() => ButtonClick(1)}>
+            BOOK NOw
+          </button>
           <div className="footer-contact">
             {/* CONTACT */}
             <div className="footer-section">
