@@ -37,7 +37,7 @@ export default function Button({ id, onClose }) {
     // Convert Django JSON response → JavaScript object
     const result = await res.json();
 
-    console.log(result);
+    
 
     if (!res.ok) {
       return result.errors || "Booking failed";
