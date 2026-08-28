@@ -24,7 +24,7 @@ export default function Button({ id, onClose }) {
     const data = Object.fromEntries(formData.entries());
 
     // Send data to Django
-    const res = await fetch("http://127.0.0.1:8000/book/", {
+    const res = await fetch("https://vanaalayam.onrender.com/book/", {
       method: "POST",
 
       headers: {
