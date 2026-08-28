@@ -152,6 +152,6 @@ DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER")
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://vanaalayam.netlify.app/"
+    "https://vanaalayam.netlify.app"
 ]
 
