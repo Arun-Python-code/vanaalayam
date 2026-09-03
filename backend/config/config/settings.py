@@ -95,7 +95,7 @@ DATABASES = {
         'PORT': os.getenv("DB_PORT"),
         "OPTIONS": {
             "ssl": {
-                "ca": os.path.join(BASE_DIR, os.getenv("DB_SSL_CA")),
+                "ca": os.getenv("DB_SSL_CA"),
             },
         },
     }
