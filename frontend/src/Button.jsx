@@ -26,18 +26,17 @@ export default function Button({ id, onClose }) {
     // Send data to Django
     const res = await fetch("https://vanaalayam.onrender.com/book/", {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify(data),
     });
 
     // Convert Django JSON response → JavaScript object
     const result = await res.json();
 
-    console.log(result);
+    console.log("Status:", res.status);
+    console.log("Response:", result);
 
     if (!res.ok) {
       return result.errors || "Booking failed";

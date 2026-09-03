@@ -30,7 +30,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["vanaalayam.onrender.com"]
+ALLOWED_HOSTS = [ "https://vanaalayam.onrender.com",
+    "localhost",
+    "127.0.0.1",]
 
 
 # Application definition
@@ -49,9 +51,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -86,11 +88,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Vanaalayam_Resort',
-        'USER': 'root',
-        'PASSWORD': 'Arun@Arun1234!',
-        'HOST': 'localhost',
-        'PORT': '3306', 
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        "OPTIONS": {
+            "ssl": {
+                "ca": os.path.join(BASE_DIR, os.getenv("DB_SSL_CA")),
+            },
+        },
     }
 }
 
