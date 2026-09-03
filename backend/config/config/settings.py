@@ -88,11 +88,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Vanaalayam_Resort',
-        'USER': 'root',
-        'PASSWORD': 'Arun@Arun1234!',
-        'HOST': 'localhost',
-        'PORT': '3306', 
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        "OPTIONS": {
+            "ssl": {
+                "ca": os.path.join(BASE_DIR, os.getenv("DB_SSL_CA")),
+            },
+        },
     }
 }
 
