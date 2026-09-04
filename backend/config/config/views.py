@@ -4,36 +4,100 @@ from rest_framework.response import Response
 from .Serializers import BookingSerializer
 from .models import Rooms_types
 from django.core.mail import send_mail
+from django.db import transaction
+import os
+import resend
+
 
 
 def home(request):
-    return HttpResponse("Hello, World!")
+    return HttpResponse("Welcome to Vanaalayam Resort API!")
 
 
 @api_view(['POST'])
 def create_booking(request):
-    # Logic to create a booking
-    serial = BookingSerializer(data=request.data)
-    if serial.is_valid():
-        room = Rooms_types.objects.get(
-            rooms_type=serial.validated_data["room_type"]
+    try:
+        serial = BookingSerializer(data=request.data)
+
+        if not serial.is_valid():
+            return Response(
+                {
+                    "message": "Invalid data provided!",
+                    "errors": serial.errors
+                },
+                status=400
+            )
+
+        with transaction.atomic():
+
+            room = Rooms_types.objects.select_for_update().get(
+                rooms_type=serial.validated_data["room_type"]
+            )
+
+            if room.available_rooms <= 0:
+                return Response(
+                    {
+                        "message": f"{room.rooms_type}: No rooms available"
+                    },
+                    status=400
+                )
+
+            booking = serial.save()
+
+            room.available_rooms -= 1
+            room.save()
+
+        # Email is separate from booking creation
+        try:
+            
+            resend.api_key = os.getenv("RESEND_API_KEY")
+  
+            params = {
+                    "from": "onboarding@resend.dev",
+                    "to": [booking.email],
+                    "subject": "Vanaalayam Resort - Booking Confirmation",
+                   "html": f"""
+                           <h2>Vanaalayam Resort - Booking Confirmation</h2>
+
+                           <p>Hello {booking.name},</p>
+
+                           <p>Your booking has been successfully confirmed.</p>
+
+                           <p>
+                             <strong>Booking ID:</strong> {booking.booking_id}<br>
+                             <strong>Room Type:</strong> {booking.room_type}<br>
+                             <strong>Check-in:</strong> {booking.check_in_date}<br>
+                             <strong>Check-out:</strong> {booking.check_out_date}
+                           </p>
+
+                           <p>Thank you for choosing Vanaalayam Resort.</p>
+                                                                """
+                                   }
+                                   
+            resend.Emails.send(params)
+
+            email_status = "Confirmation email sent."
+
+        except Exception as email_error:
+            print("EMAIL ERROR:", repr(email_error))
+            email_status = "Booking created, but confirmation email could not be sent."
+
+        return Response(
+            {
+                "message": "Booking created successfully!",
+                "booking_id": booking.booking_id,
+                "email_status": email_status,
+            },
+            status=201
         )
 
-        room.available_rooms -= 1
+    except Exception as e:
+        print("BOOKING ERROR:", repr(e))
 
-        room.save()
-        booking = serial.save()
-        send_mail(
-            subject="Vanaalayam Resort - Booking Confirmation",
-            message=f"""Hello {booking.name},
-            Your booking has been successfully confirmed.
-            Room Type : {booking.room_type}
-            Check-in: {booking.check_in_date}
-            Check-out: {booking.check_out_date}
-            Thank you for choosing Vanaalayam Resort.
-            """,
-            from_email=None,
-            recipient_list=[booking.email],
+        return Response(
+            {
+                "message": "Booking failed",
+                "error": str(e)
+            },
+            status=500
         )
-        return Response({"message" : "Booking created successfully! Confirmation email sent."}, status=201)
-    return Response({"message": "Invalid data provided!", "errors": serial.errors,}, status=400)

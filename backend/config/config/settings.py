@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ "https://vanaalayam.onrender.com",
+ALLOWED_HOSTS = [ "vanaalayam.onrender.com",
     "localhost",
     "127.0.0.1",]
 
@@ -95,7 +95,7 @@ DATABASES = {
         'PORT': os.getenv("DB_PORT"),
         "OPTIONS": {
             "ssl": {
-                "ca": os.path.join(BASE_DIR, os.getenv("DB_SSL_CA")),
+                "ca": os.getenv("DB_SSL_CA"),
             },
         },
     }
@@ -145,12 +145,12 @@ STATIC_URL = 'static/'
 MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
-        'OPTIONS':{
-            "host" : "smtp.gmail.com",
-            "port" : 587,
-            "username" : os.getenv("EMAIL_HOST_USER"),
-            "password" : os.getenv("EMAIL_HOST_PASSWORD"),
-            "use_tls" : True
+        'OPTIONS': {
+            "host": "smtp.gmail.com",
+            "use_tls": True,
+            "username": os.getenv("EMAIL_HOST_USER"),
+            "password": os.getenv("EMAIL_HOST_PASSWORD"),
+            "timeout": 10,
         },
     },
 }
@@ -162,3 +162,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://vanaalayam.netlify.app",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://vanaalayam.onrender.com",
+    "https://vanaalayam.netlify.app",
+]
