@@ -6,12 +6,14 @@ from .models import Rooms_types
 from django.core.mail import send_mail
 from django.db import transaction
 import os
+import resend
+
 
 
 def home(request):
     return HttpResponse("Welcome to Vanaalayam Resort API!")
 
-    
+
 @api_view(['POST'])
 def create_booking(request):
     try:
@@ -47,23 +49,32 @@ def create_booking(request):
 
         # Email is separate from booking creation
         try:
-            send_mail(
-                subject="Vanaalayam Resort - Booking Confirmation",
-                message=f"""Hello {booking.name},
+            
+            resend.api_key = os.getenv("RESEND_API_KEY")
+  
+            params = {
+                    "from": "onboarding@resend.dev",
+                    "to": [booking.email],
+                    "subject": "Vanaalayam Resort - Booking Confirmation",
+                   "html": f"""
+                           <h2>Vanaalayam Resort - Booking Confirmation</h2>
 
-Your booking has been successfully confirmed.
+                           <p>Hello {booking.name},</p>
 
-Booking ID: {booking.booking_id}
-Room Type: {booking.room_type}
-Check-in: {booking.check_in_date}
-Check-out: {booking.check_out_date}
+                           <p>Your booking has been successfully confirmed.</p>
 
-Thank you for choosing Vanaalayam Resort.
-""",
-                from_email=os.getenv("EMAIL_HOST_USER"),
-                recipient_list=[booking.email],
-                fail_silently=False,
-            )
+                           <p>
+                             <strong>Booking ID:</strong> {booking.booking_id}<br>
+                             <strong>Room Type:</strong> {booking.room_type}<br>
+                             <strong>Check-in:</strong> {booking.check_in_date}<br>
+                             <strong>Check-out:</strong> {booking.check_out_date}
+                           </p>
+
+                           <p>Thank you for choosing Vanaalayam Resort.</p>
+                                                                """
+                                   }
+                                   
+            resend.Emails.send(params)
 
             email_status = "Confirmation email sent."
 
