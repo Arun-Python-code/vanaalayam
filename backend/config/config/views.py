@@ -40,20 +40,20 @@ def create_booking(request):
         room.save()
 
         send_mail(
-            subject="Vanaalayam Resort - Booking Confirmation",
-            message=f"""Hello {booking.name},
+         subject="Vanaalayam Resort - Booking Confirmation",
+         message=f"""Hello {booking.name},
 
-Your booking has been successfully confirmed.
+                    Your booking has been successfully confirmed.
 
-Room Type: {booking.room_type}
-Check-in: {booking.check_in_date}
-Check-out: {booking.check_out_date}
+                    Room Type: {booking.room_type}
+                    Check-in: {booking.check_in_date}
+                    Check-out: {booking.check_out_date}
 
-Thank you for choosing Vanaalayam Resort.
-""",
-            from_email=None,
-            recipient_list=[booking.email],
-        )
+                    Thank you for choosing Vanaalayam Resort.
+                                                """,
+         from_email=None,  # Use the default from_email from settings
+         recipient_list=[booking.email],
+                          )
 
         return Response(
             {
