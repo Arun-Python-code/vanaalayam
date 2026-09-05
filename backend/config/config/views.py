@@ -3,10 +3,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .Serializers import BookingSerializer
 from .models import Rooms_types
-from django.core.mail import send_mail
 from django.db import transaction
-import os
 import resend
+import os
 
 
 
